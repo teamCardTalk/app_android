@@ -33,6 +33,7 @@ public class CustomAdapter extends ArrayAdapter<Article>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
+        Drawable d = null;
 
         if (row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
@@ -41,18 +42,18 @@ public class CustomAdapter extends ArrayAdapter<Article>{
 
         TextView tvArticleTitle = (TextView) row.findViewById(R.id.tvArticleTitle);
         TextView tvArticleDate = (TextView) row.findViewById(R.id.tvArticleDate);
-        TextView tvArticleDetail = (TextView) row.findViewById(R.id.tvArticleDetail);
+        TextView tvArticleContent = (TextView) row.findViewById(R.id.tvArticleContent);
 
         tvArticleTitle.setText(articleData.get(position).getTitle());
         tvArticleDate.setText(articleData.get(position).getCreatetime());
-        tvArticleDetail.setText(articleData.get(position).getContent());
+        tvArticleContent.setText(articleData.get(position).getContent());
 
         ImageView ivArticleIcon = (ImageView) row.findViewById(R.id.ivArticleIcon);
         ImageView ivArticlePhoto = (ImageView) row.findViewById(R.id.ivArticlePhoto);
 
         try {
             InputStream is = context.getAssets().open(articleData.get(position).getIcon());
-            Drawable d = Drawable.createFromStream(is, null);
+            d = Drawable.createFromStream(is, null);
             ivArticleIcon.setImageDrawable(d);
 
             is = context.getAssets().open(articleData.get(position).getPhoto());

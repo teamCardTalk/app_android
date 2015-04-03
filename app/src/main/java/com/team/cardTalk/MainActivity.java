@@ -3,11 +3,11 @@ package com.team.cardTalk;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -38,6 +38,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		mCurrentFragmentIndex = FRAGMENT_ARTICLELIST;
 
 		fragmentReplace(mCurrentFragmentIndex);
+
+        Stock.initiateFragmentManager(getSupportFragmentManager());
 	}
 
 	public void fragmentReplace(int reqNewFragmentIndex) {
@@ -49,22 +51,40 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		newFragment = getFragment(reqNewFragmentIndex);
 
 		// replace fragment
-		final FragmentTransaction transaction = getSupportFragmentManager()
-				.beginTransaction();
+		final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
 		transaction.replace(R.id.ll_fragment, newFragment);
+        transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();
 
 	}
 
+    public void fragmentAdd(int reqNewFragmentIndex) {
+
+        Fragment newFragment = null;
+
+        Log.d(TAG, "fragmentAdd " + reqNewFragmentIndex);
+
+        newFragment = getFragment(reqNewFragmentIndex);
+
+        // add fragment
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.add(R.id.ll_fragment, newFragment);
+
+        // Commit the transaction
+        transaction.commit();
+
+    }
+
 	private Fragment getFragment(int idx) {
 		Fragment newFragment = null;
 
 		switch (idx) {
 		case FRAGMENT_ARTICLELIST:
-			newFragment = new ArticleList();
+			newFragment = new ArticleListFragment();
 			break;
 		case FRAGMENT_CHATROOMS:
 			newFragment = new TwoFragment();
@@ -96,17 +116,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			break;
 		case R.id.bt_chatRooms:
 			mCurrentFragmentIndex = FRAGMENT_CHATROOMS;
-			fragmentReplace(mCurrentFragmentIndex);
+            fragmentReplace(mCurrentFragmentIndex);
             Toast.makeText(getApplicationContext(), "Chat Rooms", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bt_friends:
 			mCurrentFragmentIndex = FRAGMENT_FRIENDS;
-			fragmentReplace(mCurrentFragmentIndex);
+            fragmentReplace(mCurrentFragmentIndex);
             Toast.makeText(getApplicationContext(), "Friends", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bt_setting:
 			mCurrentFragmentIndex = FRAGMENT_SETTING;
-			fragmentReplace(mCurrentFragmentIndex);
+            fragmentReplace(mCurrentFragmentIndex);
             Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
 			break;
 

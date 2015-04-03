@@ -41,11 +41,11 @@ public class CustomAdapterAL extends ArrayAdapter<ArticleListData>{
 
         TextView tvArticleTitle = (TextView) row.findViewById(R.id.tvArticleTitle);
         TextView tvArticleDate = (TextView) row.findViewById(R.id.tvArticleDate);
-        TextView tvArticleDetail = (TextView) row.findViewById(R.id.tvArticleDetail);
+        TextView tvArticleDetailContent = (TextView) row.findViewById(R.id.tvArticleDetailContent);
 
         tvArticleTitle.setText(articleListData.get(position).getTitle());
         tvArticleDate.setText(articleListData.get(position).getDate());
-        tvArticleDetail.setText(articleListData.get(position).getDetail());
+        tvArticleDetailContent.setText(articleListData.get(position).getDetail());
 
         ImageView ivArticleIcon = (ImageView) row.findViewById(R.id.ivArticleIcon);
 

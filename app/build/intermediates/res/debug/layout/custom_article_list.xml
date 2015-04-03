@@ -13,7 +13,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/cardbg"
-        >
+        android:id="@+id/detailArticle">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -62,13 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ivArticlePhoto"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/tvArticleDetail"
+            android:id="@+id/tvArticleContent"
             android:layout_marginTop="10dp"
             android:textSize="11sp"
             android:focusable="false"

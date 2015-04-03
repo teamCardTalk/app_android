@@ -1,18 +1,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#ffffffff"
+        android:background="#2185C5"
         android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:orientation="vertical" />
+
+
+        <com.andexert.library.RippleView
+            android:id="@+id/more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rv_rippleDuration="150"
+            app:rv_centered="false">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -20,42 +30,43 @@
             android:background="#4262A0"
             android:orientation="horizontal" >
 
-            <ImageButton
-                android:id="@+id/bt_articleList"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_action_articlelist"
-                android:background="#4262A0" />
+                <ImageButton
+                    android:id="@+id/bt_articleList"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_action_articlelist"
+                    android:background="#4262A0" />
 
-            <ImageButton
-                android:id="@+id/bt_chatRooms"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_action_chatrooms"
-                android:background="#4262A0" />
+                <ImageButton
+                    android:id="@+id/bt_chatRooms"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_action_chatrooms"
+                    android:background="#4262A0" />
 
-            <ImageButton
-                android:id="@+id/bt_friends"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_action_friends"
-                android:background="#4262A0"/>
+                <ImageButton
+                    android:id="@+id/bt_friends"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_action_friends"
+                    android:background="#4262A0"/>
 
-            <ImageButton
-                android:id="@+id/bt_setting"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_action_setting"
-                android:background="#4262A0"/>
-        </LinearLayout>
+                <ImageButton
+                    android:id="@+id/bt_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_action_setting"
+                    android:background="#4262A0"/>
+            </LinearLayout>
+        </com.andexert.library.RippleView>
     </LinearLayout>
 
 </RelativeLayout>
