@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.yalantis.phoenix.PullToRefreshView;
+
 import java.util.ArrayList;
 
 
@@ -20,11 +22,25 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
 
     private ArrayList<Article> articleList;
 
+
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_article_list, container, false);
+
+        final PullToRefreshView mPullToRefreshView = (PullToRefreshView) view.findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, 100);
+            }
+        });
 
         ListView listView = (ListView) view.findViewById(R.id.custom_list_listView);
 
@@ -70,7 +86,7 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
 
         Toast.makeText(getActivity(), "Write", Toast.LENGTH_SHORT).show();
 
-        Fragment newFragment = new TwoFragment();
+        Fragment newFragment = new ArticleWriteFragment();
 
         // replace fragment
         final FragmentTransaction transaction = Stock.getFragmentManager().beginTransaction();

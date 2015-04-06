@@ -82,12 +82,19 @@
 
     </RelativeLayout>
 
-    <ListView
-        android:layout_width="fill_parent"
+    <com.yalantis.phoenix.PullToRefreshView
+        android:id="@+id/pull_to_refresh"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/custom_list_listView"
-        android:layout_marginTop="50dp"
-        android:scrollbars="none"
-        android:divider="#2185C5"/>
+        android:layout_marginTop="50dp">
+
+        <ListView
+            android:divider="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/custom_list_listView"
+            android:scrollbars="none"/>
+            <!--android:divider="#2185C5"/>-->
+    </com.yalantis.phoenix.PullToRefreshView>
 
 </RelativeLayout>

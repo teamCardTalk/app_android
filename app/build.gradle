@@ -23,4 +23,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.0.0'
     compile files('libs/android-async-http-1.4.6.jar')
     compile 'com.github.traex.rippleeffect:library:1.2.4'
+    compile 'com.yalantis:phoenix:1.1.0'
 }

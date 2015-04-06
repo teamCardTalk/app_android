@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2186C5">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#4262A0">
+
+        <com.andexert.library.RippleView
+            android:id="@+id/more"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:rv_rippleDuration="150"
+            app:rv_centered="false"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:id="@+id/bt_previous"
+                android:background="@drawable/ic_action_cancel" />
+        </com.andexert.library.RippleView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="0dp"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="글 쓰기"
+                android:id="@+id/textView"
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:layout_marginRight="50dp" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="완료"
+            android:id="@+id/bt_complete"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#7ecefd"
+            android:layout_marginRight="10dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="bottom|top"
+        android:padding="10dp"
+        android:background="@drawable/cardbg"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            >
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:id="@+id/ivArticleWriteIcon"
+                android:layout_marginRight="12dp"
+                android:focusable="false"
+                android:clickable="false"
+                />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/border">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvArticleWriteTitle"
+                    android:text="노란 조커의 은밀한 노래방"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="#fff6e5" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivArticleWritePhoto"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:textSize="11sp"
+            android:id="@+id/tvArticleWriteContent"
+            android:background="#fff6e5"
+            android:text="내용을 입력하세요..."
+            android:paddingBottom="10dp" />
+
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk/app/src/main/res/layout/fragment_article_write.xml -->
