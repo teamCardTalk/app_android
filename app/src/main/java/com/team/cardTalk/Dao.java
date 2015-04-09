@@ -20,11 +20,12 @@ public class Dao {
 
     public Dao(Context context) {
         this.context = context;
+        String sql;
 
         database = context.openOrCreateDatabase("LocalData.db", SQLiteDatabase.CREATE_IF_NECESSARY, null);
 
         try {
-            String sql = "CREATE TABLE IF NOT EXISTS Articles (id integer primary key autoincrement,"
+            sql = "CREATE TABLE IF NOT EXISTS Articles (id integer primary key autoincrement,"
                     + "                                         status int not null,"
                     + "                                         title text not null,"
                     + "                                         author text not null,"
@@ -38,7 +39,22 @@ public class Dao {
                     + "                                         photo text)";
             database.execSQL(sql);
         } catch (Exception e) {
-            Log.e("test", "CREATE TABLE FAILED! - " + e);
+            Log.e("test", "CREATE ARTICLES TABLE FAILED! - " + e);
+            e.printStackTrace();
+        }
+
+        // 채팅
+        try {
+            sql = "CREATE TABLE IF NOT EXISTS Chats (id integer primary key autoincrement,"
+                    + "                                         articleid integer not null,"
+                    + "                                         nickname text not null,"
+                    + "                                         nicknameid int not null,"
+                    + "                                         icon text not null,"
+                    + "                                         content text not null,"
+                    + "                                         time text not null)";
+            database.execSQL(sql);
+        } catch (Exception e) {
+            Log.e("test", "CREATE CHATS TABLE FAILED! - " + e);
             e.printStackTrace();
         }
     }
@@ -229,5 +245,145 @@ public class Dao {
 
         return article;
     }
-}
 
+
+    // 채팅
+
+    public String getJsonChatData() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("");
+        sb.append("[");
+
+        sb.append("     {");
+        sb.append("       'articleid':'1',");
+        sb.append("       'nickname':'녹색 여왕',");
+        sb.append("       'nicknameid':'1',");
+        sb.append("       'icon':'icon1.png',");
+        sb.append("       'content':'NEXT MOVIE NIGHT (feat. 빅히어로 & pizza)\n13일의 금요일 저녁을 빅히어로와 함께!\n무슨 영화??? 빅 히어로\n> 말랑말랑 마시멜로같은 히어로 본 적 있나요?',");
+        sb.append("       'time':'2015-03-20-09-10'");
+        sb.append("     },");
+
+        sb.append("     {");
+        sb.append("       'articleid':'1',");
+        sb.append("       'nickname':'핑크 마법사',");
+        sb.append("       'nicknameid':'2',");
+        sb.append("       'icon':'icon2.png',");
+        sb.append("       'content':'1삼시세끼가 끝나서 ㅠㅠ',");
+        sb.append("       'time':'2015-03-20-09-20'");
+        sb.append("     },");
+
+        sb.append("     {");
+        sb.append("       'articleid':'1',");
+        sb.append("       'nickname':'노란 조커',");
+        sb.append("       'nicknameid':'3',");
+        sb.append("       'icon':'icon3.png',");
+        sb.append("       'content':'형진이는 못하는게 뭐지',");
+        sb.append("       'time':'2015-03-20-09-30'");
+        sb.append("     },");
+
+        sb.append("     {");
+        sb.append("       'articleid':'2',");
+        sb.append("       'nickname':'핑크 마법사',");
+        sb.append("       'nicknameid':'2',");
+        sb.append("       'icon':'icon2.png',");
+        sb.append("       'content':'삼시세끼가 끝나서 산체 보는 낙이 없네 ㅠㅠ',");
+        sb.append("       'time':'2015-03-20-09-20'");
+        sb.append("     },");
+
+        sb.append("     {");
+        sb.append("       'articleid':'2',");
+        sb.append("       'nickname':'노란 조커',");
+        sb.append("       'nicknameid':'3',");
+        sb.append("       'icon':'icon3.png',");
+        sb.append("       'content':'형진이는 못하는게 뭐지',");
+        sb.append("       'time':'2015-03-20-09-30'");
+        sb.append("     },");
+
+        sb.append("     {");
+        sb.append("       'articleid':'3',");
+        sb.append("       'nickname':'노란 조커',");
+        sb.append("       'nicknameid':'3',");
+        sb.append("       'icon':'icon3.png',");
+        sb.append("       'content':'형진이는 못하는게 뭐지',");
+        sb.append("       'time':'2015-03-20-09-30'");
+        sb.append("     }");
+
+        sb.append("]");
+
+        return sb.toString();
+    }
+
+    public void insertJsonChatData(String jsonData) {
+
+        int articleid;
+        String nickname;
+        int nicknameid;
+        String icon;
+        String content;
+        String time;
+
+        try {
+            JSONArray jArr = new JSONArray(jsonData);
+
+            for (int i = 0; i < jArr.length(); ++i) {
+                JSONObject jObj = jArr.getJSONObject(i);
+                articleid = jObj.getInt("articleid");
+                nickname = jObj.getString("nickname");
+                nicknameid = jObj.getInt("nicknameid");
+                icon = jObj.getString("icon");
+                content = jObj.getString("content");
+                time = jObj.getString("time");
+
+                Log.i("test", "title: " + content);
+
+                String sql = "INSERT INTO Chats(articleid, nickname, nicknameid, icon, content,time)"
+                        + " VALUES(" + articleid + ", '" + nickname + "', '" + nicknameid + "', '" + icon + "', '" + content + "', '" + time + "');";
+
+                Log.i("test", sql);
+
+                try {
+                    database.execSQL(sql);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList getChatListByArticleNumber(int id) {
+
+        ArrayList<Chat> chatList = new ArrayList<Chat>();
+
+        int chatid;
+        int articleid;
+        String nickname;
+        int nicknameid;
+        String icon;
+        String content;
+        String time;
+
+        String sql = "SELECT * FROM CHATS WHERE articleid = " + id + ";";
+        Cursor cursor = database.rawQuery(sql, null);
+
+        while (cursor.moveToNext()) {
+
+            chatid = cursor.getInt(0);
+            articleid = cursor.getInt(1);
+            nickname = cursor.getString(2);
+            nicknameid = cursor.getInt(3);
+            icon = cursor.getString(4);
+            content = cursor.getString(5);
+            time = cursor.getString(6);
+
+            chatList.add(new Chat(chatid, articleid, nickname, nicknameid, icon, content, time));
+
+            Log.i("test", content);
+        }
+        cursor.close();
+
+        return chatList;
+    }
+}

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ArticleViewFragment extends Fragment implements View.OnClickListener {
+
+    private ArrayList<Chat> chatList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +75,15 @@ public class ArticleViewFragment extends Fragment implements View.OnClickListene
             Log.e("ERROR", "ERROR: " + e);
         }
 
+        ListView listView = (ListView) view.findViewById(R.id.custom_chat_listView);
+//        String chatJsonData = dao.getJsonChatData();
+//        dao.insertJsonChatData(chatJsonData);
 
+        chatList = dao.getChatListByArticleNumber(id);
+
+        CustomChatAdapter customChatAdapter= new CustomChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
+        listView.setAdapter(customChatAdapter);
+//        listView.addHeaderView(custumDetailview);
 
         return view;
     }

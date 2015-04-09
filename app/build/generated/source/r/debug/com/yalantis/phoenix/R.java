@@ -8,18 +8,18 @@ package com.yalantis.phoenix;
 
 public final class R {
 	public static final class attr {
-		public static final int type = 0x7f010017;
+		public static final int type = 0x7f01001b;
 	}
 	public static final class drawable {
 		public static final int buildings = 0x7f020005;
-		public static final int sky = 0x7f020034;
-		public static final int sun = 0x7f020035;
+		public static final int sky = 0x7f020036;
+		public static final int sun = 0x7f020037;
 	}
 	public static final class id {
 		public static final int sun = 0x7f0d0008;
 	}
 	public static final class styleable {
-		public static final int[] RefreshView = { 0x7f010017 };
+		public static final int[] RefreshView = { 0x7f01001b };
 		public static final int RefreshView_type = 0;
 	}
 }

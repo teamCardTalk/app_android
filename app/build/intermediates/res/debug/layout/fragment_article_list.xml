@@ -93,8 +93,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/custom_list_listView"
-            android:scrollbars="none"/>
-            <!--android:divider="#2185C5"/>-->
+            android:scrollbars="none">
+        </ListView>
+
     </com.yalantis.phoenix.PullToRefreshView>
 
 </RelativeLayout><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk/app/src/main/res/layout/fragment_article_list.xml -->

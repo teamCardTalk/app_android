@@ -60,8 +60,10 @@
             android:layout_gravity="center"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="#7ecefd"
-            android:layout_marginRight="10dp" />
+            android:background="#4262A0"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 
@@ -94,9 +96,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="36dp"
                 android:gravity="center_vertical"
-                android:background="@drawable/border">
+                android:background="@drawable/border"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="4dp">
 
                 <EditText
                     android:layout_width="match_parent"
