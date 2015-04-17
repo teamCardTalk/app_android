@@ -4,15 +4,15 @@ package com.team.cardTalk;
  * Created by eunjooim on 15. 3. 31..
  */
 public class Chat {
-    private int id;
-    private int articleid;
+    private String id;
+    private String articleid;
     private String nickname;
     private int nicknameid;
     private String icon;
     private String content;
     private String time;
 
-    public Chat(int id, int articleid, String nickname, int nicknameid, String icon, String content, String time) {
+    public Chat(String id, String articleid, String nickname, int nicknameid, String icon, String content, String time) {
         this.id = id;
         this.articleid = articleid;
         this.nickname = nickname;
@@ -22,11 +22,11 @@ public class Chat {
         this.time = time;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public int getChatid() {
+    public String getChatid() {
         return articleid;
     }
 

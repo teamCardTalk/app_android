@@ -2,6 +2,8 @@ package com.team.cardTalk;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -51,18 +54,39 @@ public class CustomAdapter extends ArrayAdapter<Article>{
         ImageView ivArticleIcon = (ImageView) row.findViewById(R.id.ivArticleIcon);
         ImageView ivArticlePhoto = (ImageView) row.findViewById(R.id.ivArticlePhoto);
 
-        try {
-            InputStream is = context.getAssets().open(articleData.get(position).getIcon());
-            d = Drawable.createFromStream(is, null);
-            ivArticleIcon.setImageDrawable(d);
+//        try {
+//            InputStream is = context.getAssets().open(articleData.get(position).getIcon());
+//            d = Drawable.createFromStream(is, null);
+//            ivArticleIcon.setImageDrawable(d);
+//
+//            is = context.getAssets().open(articleData.get(position).getPhoto());
+//            d = Drawable.createFromStream(is, null);
+//            ivArticlePhoto.setImageDrawable(d);
+//
+//        } catch (IOException e) {
+//            Log.e("ERROR", "ERROR: " + e);
+//        }
 
-            is = context.getAssets().open(articleData.get(position).getPhoto());
-            d = Drawable.createFromStream(is, null);
-            ivArticlePhoto.setImageDrawable(d);
+        String icon = articleData.get(position).getIcon();
+        icon = icon.replaceAll("icon/", "");
+        String iconPath = context.getFilesDir().getPath() + "/" + icon;
+        File iconLoadPath = new File(iconPath);
 
-        } catch (IOException e) {
-            Log.e("ERROR", "ERROR: " + e);
+        if (iconLoadPath.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(iconPath);
+            ivArticleIcon.setImageBitmap(bitmap);
         }
+
+        String photo = articleData.get(position).getPhoto();
+        photo = photo.replaceAll("data/", "");
+        String photoPath = context.getFilesDir().getPath() + "/" + photo;
+        File photoLoadPath = new File(photoPath);
+
+        if (photoLoadPath.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
+            ivArticlePhoto.setImageBitmap(bitmap);
+        }
+
 
         return row;
     }

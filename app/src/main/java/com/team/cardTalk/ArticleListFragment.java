@@ -12,16 +12,18 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.yalantis.phoenix.PullToRefreshView;
+
+import org.apache.http.Header;
 
 import java.util.ArrayList;
 
 
 public class ArticleListFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
-
-
     private ArrayList<Article> articleList;
-
+    private ListView mainListView;
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,31 +44,71 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
             }
         });
 
-        ListView listView = (ListView) view.findViewById(R.id.custom_list_listView);
+        mainListView = (ListView) view.findViewById(R.id.custom_list_listView);
 
         ImageButton bt_write = (ImageButton) view.findViewById(R.id.bt_write);
         bt_write.setOnClickListener(this);
 
-        Dao dao = new Dao(getActivity());
+//        Dao dao = new Dao(getActivity());
 //        String testJsonData = dao.getJsonTestData();
 //        dao.insertJsonData(testJsonData);
+//        articleList = dao.getArticleList();
+//        CustomAdapter customAdapter= new CustomAdapter(getActivity(), R.layout.custom_article_list, articleList);
+//        mainListView.setAdapter(customAdapter);
+//        mainListView.setOnItemClickListener(this);
 
-        articleList = dao.getArticleList();
-
-        CustomAdapter customAdapter= new CustomAdapter(getActivity(), R.layout.custom_article_list, articleList);
-        listView.setAdapter(customAdapter);
-        listView.setOnItemClickListener(this);
+        refreshData();
+//        listView();
 
 		return view;
 	}
 
+    // network 4/16
+    private void listView() {
+        Dao dao = new Dao(getActivity());
+        articleList = dao.getArticleList();
+
+        CustomAdapter customAdapter= new CustomAdapter(getActivity(), R.layout.custom_article_list, articleList);
+        mainListView.setAdapter(customAdapter);
+        mainListView.setOnItemClickListener(this);
+
+    }
+
+    // network 4/16
+    private static AsyncHttpClient client = new AsyncHttpClient();
+
+    private void refreshData() {
+
+        Log.i("test", "refreshData");
+        client.get("http://125.209.195.202:3000/card/all", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                Log.i("test","AsyncHttpClient.get succeeded!");
+//                Proxy proxy = new Proxy();
+//                String jsonData = proxy.getJSON();
+                String jsonData = new String(bytes);
+                Log.i("test", "jsonData: " + jsonData);
+
+                Dao dao = new Dao(getActivity());
+                dao.insertJsonData(jsonData);
+
+                listView();
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                Log.i("test", "AsyncHttpClient.get failed!");
+            }
+        });
+    }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment newFragment = new ArticleViewFragment();
 
         // pass data(extras) to a fragment
         Bundle bundle = new Bundle();
-        bundle.putInt("id", Integer.parseInt(articleList.get(position).getId() + ""));
+        String _id = articleList.get(position).getId();
+        bundle.putString("_id", _id);
         newFragment.setArguments(bundle);
 
         final FragmentTransaction transaction = Stock.getFragmentManager().beginTransaction();
@@ -78,17 +120,17 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
         // Commit the transaction
         transaction.commit();
 
-        Log.i("TEST", position + "번 리스트 선택됨");
+        Log.i("TEST", "_id : <" + _id + "> 선택됨");
     }
 
-    @Override
-    public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
 
-        Toast.makeText(getActivity(), "Write", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Write", Toast.LENGTH_SHORT).show();
 
-        Fragment newFragment = new ArticleWriteFragment();
+            Fragment newFragment = new ArticleWriteFragment();
 
-        // replace fragment
+            // replace fragment
         final FragmentTransaction transaction = Stock.getFragmentManager().beginTransaction();
 
         transaction.setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_bottom, R.anim.enter_from_bottom, R.anim.exit_to_top);

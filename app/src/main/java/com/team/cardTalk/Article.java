@@ -4,7 +4,7 @@ package com.team.cardTalk;
  * Created by eunjooim on 15. 3. 31..
  */
 public class Article {
-    private int id;
+    private String _id;
     private int status;
     private String title;
     private String author;
@@ -18,8 +18,8 @@ public class Article {
     private String photo;
 
 
-    public Article(int id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
-        this.id = id;
+    public Article(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
+        this._id = _id;
         this.status = status;
         this.title = title;
         this.author = author;
@@ -33,7 +33,7 @@ public class Article {
         this.photo = photo;
     }
 
-    public int getId() { return id; }
+    public String getId() { return _id; }
     
     public int getStatus() {
         return status;

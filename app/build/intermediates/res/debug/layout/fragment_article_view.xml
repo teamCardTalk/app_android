@@ -62,82 +62,82 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
 
-            android:gravity="bottom|top"
-            android:padding="10dp"
-            android:background="@drawable/cardbg"
-            android:layout_margin="10dp">
+            <!--android:gravity="bottom|top"-->
+            <!--android:padding="10dp"-->
+            <!--android:background="@drawable/cardbg"-->
+            <!--android:layout_margin="10dp">-->
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                >
+            <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="6dp"-->
+                <!-->-->
 
-                <ImageView
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"
-                    android:id="@+id/ivArticleDetailIcon"
-                    android:layout_marginRight="12dp"
-                    android:focusable="false"
-                    android:clickable="false"
-                    />
+                <!--<ImageView-->
+                    <!--android:layout_width="54dp"-->
+                    <!--android:layout_height="54dp"-->
+                    <!--android:id="@+id/ivArticleDetailIcon"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:focusable="false"-->
+                    <!--android:clickable="false"-->
+                    <!--/>-->
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:gravity="center_vertical">
+                <!--<LinearLayout-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="54dp"-->
+                    <!--android:gravity="center_vertical">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="글제목"
-                        android:id="@+id/tvArticleDetailTitle"
-                        android:focusable="false"
-                        android:clickable="false"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="글제목"-->
+                        <!--android:id="@+id/tvArticleDetailTitle"-->
+                        <!--android:focusable="false"-->
+                        <!--android:clickable="false"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textStyle="bold" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="시간"
-                        android:id="@+id/tvArticleDetailDate"
-                        android:focusable="false"
-                        android:clickable="false"
-                        />
-                </LinearLayout>
-            </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="시간"-->
+                        <!--android:id="@+id/tvArticleDetailDate"-->
+                        <!--android:focusable="false"-->
+                        <!--android:clickable="false"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivArticleDetailPhoto"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center" />
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/ivArticleDetailPhoto"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_gravity="center" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/tvArticleDetailContent"
-                android:layout_marginTop="10dp"
-                android:textSize="11sp"
-                android:focusable="false"
-                android:clickable="false"
-                />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="New Text"-->
+                <!--android:id="@+id/tvArticleDetailContent"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:textSize="11sp"-->
+                <!--android:focusable="false"-->
+                <!--android:clickable="false"-->
+                <!--/>-->
 
-            <FrameLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"></FrameLayout>
+            <!--<FrameLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"></FrameLayout>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <ListView
             android:layout_width="match_parent"
@@ -149,5 +149,4 @@
         </ListView>
     </LinearLayout>
 <!--</ScrollView>-->
-</LinearLayout>
-<!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk/app/src/main/res/layout/fragment_article_view.xml -->
+</LinearLayout><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk/app/src/main/res/layout/fragment_article_view.xml -->
