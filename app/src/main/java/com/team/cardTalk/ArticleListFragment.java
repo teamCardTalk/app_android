@@ -11,13 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.yalantis.phoenix.PullToRefreshView;
-
 import org.apache.http.Header;
-
 import java.util.ArrayList;
 
 
@@ -39,6 +36,7 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
                     @Override
                     public void run() {
                         mPullToRefreshView.setRefreshing(false);
+                        refreshData();
                     }
                 }, 100);
             }
@@ -48,20 +46,16 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
 
         ImageButton bt_write = (ImageButton) view.findViewById(R.id.bt_write);
         bt_write.setOnClickListener(this);
-
-//        Dao dao = new Dao(getActivity());
-//        String testJsonData = dao.getJsonTestData();
-//        dao.insertJsonData(testJsonData);
-//        articleList = dao.getArticleList();
-//        CustomAdapter customAdapter= new CustomAdapter(getActivity(), R.layout.custom_article_list, articleList);
-//        mainListView.setAdapter(customAdapter);
-//        mainListView.setOnItemClickListener(this);
-
-        refreshData();
-//        listView();
+//        refreshData();
 
 		return view;
 	}
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();
+    }
 
     // network 4/16
     private void listView() {
@@ -71,7 +65,6 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
         CustomAdapter customAdapter= new CustomAdapter(getActivity(), R.layout.custom_article_list, articleList);
         mainListView.setAdapter(customAdapter);
         mainListView.setOnItemClickListener(this);
-
     }
 
     // network 4/16
@@ -84,8 +77,6 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 Log.i("test","AsyncHttpClient.get succeeded!");
-//                Proxy proxy = new Proxy();
-//                String jsonData = proxy.getJSON();
                 String jsonData = new String(bytes);
                 Log.i("test", "jsonData: " + jsonData);
 

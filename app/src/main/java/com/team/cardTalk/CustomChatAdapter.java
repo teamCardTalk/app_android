@@ -2,6 +2,8 @@ package com.team.cardTalk;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by eunjooim on 15. 3. 26..
@@ -46,19 +52,38 @@ public class CustomChatAdapter extends ArrayAdapter<Chat>{
 
         tvChatNickname.setText(chatData.get(position).getNickname());
         tvChatContent.setText(chatData.get(position).getContent());
-        tvChatTime.setText(chatData.get(position).getTime());
+        tvChatTime.setText(parsingDate(chatData.get(position).getTime()));
 
         ImageView ivArticleIcon = (ImageView) row.findViewById(R.id.ivChatIcon);
 
-        try {
-            InputStream is = context.getAssets().open(chatData.get(position).getIcon());
-            d = Drawable.createFromStream(is, null);
-            ivArticleIcon.setImageDrawable(d);
+        String icon = chatData.get(position).getIcon();
+        icon = icon.replaceAll("icon/", "");
+        String iconPath = context.getFilesDir().getPath() + "/" + icon;
+        File iconLoadPath = new File(iconPath);
 
-        } catch (IOException e) {
-            Log.e("ERROR", "ERROR: " + e);
+        if (iconLoadPath.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(iconPath);
+            ivArticleIcon.setImageBitmap(bitmap);
         }
+//        try {
+//            InputStream is = context.getAssets().open(chatData.get(position).getIcon());
+//            d = Drawable.createFromStream(is, null);
+//            ivArticleIcon.setImageDrawable(d);
+//
+//        } catch (IOException e) {
+//            Log.e("ERROR", "ERROR: " + e);
+//        }
 
         return row;
+    }
+
+    public String parsingDate(String inputDate) {
+        try {
+            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return inputDate;
     }
 }

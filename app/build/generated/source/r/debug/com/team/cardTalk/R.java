@@ -563,26 +563,29 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020021;
         public static final int common_signin_btn_text_pressed_dark=0x7f020022;
         public static final int common_signin_btn_text_pressed_light=0x7f020023;
-        public static final int ic_action_articlelist=0x7f020024;
-        public static final int ic_action_cancel=0x7f020025;
-        public static final int ic_action_chatrooms=0x7f020026;
-        public static final int ic_action_enter=0x7f020027;
-        public static final int ic_action_friends=0x7f020028;
-        public static final int ic_action_peek=0x7f020029;
-        public static final int ic_action_previous=0x7f02002a;
-        public static final int ic_action_search=0x7f02002b;
-        public static final int ic_action_setting=0x7f02002c;
-        public static final int ic_action_write=0x7f02002d;
-        public static final int ic_launcher=0x7f02002e;
-        public static final int ic_plusone_medium_off_client=0x7f02002f;
-        public static final int ic_plusone_small_off_client=0x7f020030;
-        public static final int ic_plusone_standard_off_client=0x7f020031;
-        public static final int ic_plusone_tall_off_client=0x7f020032;
-        public static final int powered_by_google_dark=0x7f020033;
-        public static final int powered_by_google_light=0x7f020034;
-        public static final int shape_rounded=0x7f020035;
-        public static final int sky=0x7f020036;
-        public static final int sun=0x7f020037;
+        public static final int ib_addphoto=0x7f020024;
+        public static final int ic_action_addphoto=0x7f020025;
+        public static final int ic_action_articlelist=0x7f020026;
+        public static final int ic_action_cancel=0x7f020027;
+        public static final int ic_action_chatrooms=0x7f020028;
+        public static final int ic_action_enter=0x7f020029;
+        public static final int ic_action_friends=0x7f02002a;
+        public static final int ic_action_name=0x7f02002b;
+        public static final int ic_action_peek=0x7f02002c;
+        public static final int ic_action_previous=0x7f02002d;
+        public static final int ic_action_search=0x7f02002e;
+        public static final int ic_action_setting=0x7f02002f;
+        public static final int ic_action_write=0x7f020030;
+        public static final int ic_launcher=0x7f020031;
+        public static final int ic_plusone_medium_off_client=0x7f020032;
+        public static final int ic_plusone_small_off_client=0x7f020033;
+        public static final int ic_plusone_standard_off_client=0x7f020034;
+        public static final int ic_plusone_tall_off_client=0x7f020035;
+        public static final int powered_by_google_dark=0x7f020036;
+        public static final int powered_by_google_light=0x7f020037;
+        public static final int shape_rounded=0x7f020038;
+        public static final int sky=0x7f020039;
+        public static final int sun=0x7f02003a;
     }
     public static final class id {
         public static final int action_settings=0x7f0d0043;
@@ -598,6 +601,7 @@ containing a value of this type.
         public static final int bt_new=0x7f0d0036;
         public static final int bt_ok=0x7f0d002e;
         public static final int bt_peek=0x7f0d0028;
+        public static final int bt_photo=0x7f0d0041;
         public static final int bt_previous=0x7f0d003b;
         public static final int bt_search=0x7f0d0034;
         public static final int bt_setting=0x7f0d0021;
@@ -621,7 +625,6 @@ containing a value of this type.
         public static final int ivArticleIcon=0x7f0d0023;
         public static final int ivArticlePhoto=0x7f0d0026;
         public static final int ivArticleWriteIcon=0x7f0d003f;
-        public static final int ivArticleWritePhoto=0x7f0d0041;
         public static final int ivChatIcon=0x7f0d002a;
         public static final int ll_fragment=0x7f0d001c;
         public static final int match_parent=0x7f0d0013;
@@ -674,7 +677,7 @@ containing a value of this type.
         public static final int main=0x7f0c0000;
     }
     public static final class mipmap {
-        public static final int buildings=0x7f030000;
+        public static final int ic_action_addimage=0x7f030000;
         public static final int ic_launcher=0x7f030001;
     }
     public static final class raw {

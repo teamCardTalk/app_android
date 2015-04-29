@@ -7,10 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-/**
- * TODO: document your custom view class.
- */
 public class ArticleDetailView extends View {
     public ArticleDetailView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

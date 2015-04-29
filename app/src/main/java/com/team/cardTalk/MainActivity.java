@@ -36,27 +36,18 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         bt_setting.setOnClickListener(this);
 
 		mCurrentFragmentIndex = FRAGMENT_ARTICLELIST;
-
 		fragmentReplace(mCurrentFragmentIndex);
-
         Stock.initiateFragmentManager(getSupportFragmentManager());
 	}
 
 	public void fragmentReplace(int reqNewFragmentIndex) {
-
 		Fragment newFragment = null;
-
 		Log.d(TAG, "fragmentReplace " + reqNewFragmentIndex);
-
 		newFragment = getFragment(reqNewFragmentIndex);
 
-		// replace fragment
 		final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
 		transaction.replace(R.id.ll_fragment, newFragment);
         transaction.addToBackStack(null);
-
-		// Commit the transaction
 		transaction.commit();
 
 	}
@@ -64,19 +55,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     public void fragmentAdd(int reqNewFragmentIndex) {
 
         Fragment newFragment = null;
-
         Log.d(TAG, "fragmentAdd " + reqNewFragmentIndex);
-
         newFragment = getFragment(reqNewFragmentIndex);
 
-        // add fragment
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
         transaction.add(R.id.ll_fragment, newFragment);
-
-        // Commit the transaction
         transaction.commit();
-
     }
 
 	private Fragment getFragment(int idx) {
@@ -100,7 +84,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			Log.d(TAG, "Unhandle case");
 			break;
 		}
-
 		return newFragment;
 	}
 
@@ -112,26 +95,20 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.bt_articleList:
 			mCurrentFragmentIndex = FRAGMENT_ARTICLELIST;
 			fragmentReplace(mCurrentFragmentIndex);
-            Toast.makeText(getApplicationContext(), "Article List", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bt_chatRooms:
 			mCurrentFragmentIndex = FRAGMENT_CHATROOMS;
             fragmentReplace(mCurrentFragmentIndex);
-            Toast.makeText(getApplicationContext(), "Chat Rooms", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bt_friends:
 			mCurrentFragmentIndex = FRAGMENT_FRIENDS;
             fragmentReplace(mCurrentFragmentIndex);
-            Toast.makeText(getApplicationContext(), "Friends", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.bt_setting:
 			mCurrentFragmentIndex = FRAGMENT_SETTING;
             fragmentReplace(mCurrentFragmentIndex);
-            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
 			break;
 
 		}
-
 	}
-
 }

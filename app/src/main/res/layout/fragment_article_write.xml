@@ -114,22 +114,26 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivArticleWritePhoto"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center" />
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/bt_photo"
+            android:background="@drawable/ib_addphoto"
+            android:layout_gravity="center"
+            android:layout_weight="0.4"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:textSize="11sp"
+            android:textSize="14sp"
             android:id="@+id/tvArticleWriteContent"
             android:background="#fff6e5"
             android:text="내용을 입력하세요..."
-            android:paddingBottom="10dp" />
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="4dp" />
 
     </LinearLayout>
 

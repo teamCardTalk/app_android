@@ -45,10 +45,10 @@ public class Dao {
 
         // 채팅
         try {
-            sql = "CREATE TABLE IF NOT EXISTS Chats (_id integer primary key not null,"
-                    + "                                         articleid integer not null,"
+            sql = "CREATE TABLE IF NOT EXISTS Chats (_id text primary key not null,"
+                    + "                                         articleid text not null,"
                     + "                                         nickname text not null,"
-                    + "                                         nicknameid int not null,"
+                    + "                                         userid int not null,"
                     + "                                         icon text not null,"
                     + "                                         content text not null,"
                     + "                                         time text not null)";
@@ -331,9 +331,10 @@ public class Dao {
 
     public void insertJsonChatData(String jsonData) {
 
+        String _id;
         String articleid;
         String nickname;
-        int nicknameid;
+        int userid;
         String icon;
         String content;
         String time;
@@ -343,17 +344,18 @@ public class Dao {
 
             for (int i = 0; i < jArr.length(); ++i) {
                 JSONObject jObj = jArr.getJSONObject(i);
+                _id = jObj.getString("_id");
                 articleid = jObj.getString("articleid");
                 nickname = jObj.getString("nickname");
-                nicknameid = jObj.getInt("nicknameid");
+                userid = jObj.getInt("userid");
                 icon = jObj.getString("icon");
                 content = jObj.getString("content");
                 time = jObj.getString("time");
 
                 Log.i("test", "title: " + content);
 
-                String sql = "INSERT INTO Chats(articleid, nickname, nicknameid, icon, content,time)"
-                        + " VALUES(" + articleid + "', '" + nickname + "', '" + nicknameid + "', '" + icon + "', '" + content + "', '" + time + "');";
+                String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content,time)"
+                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
 
                 Log.i("test", sql);
 

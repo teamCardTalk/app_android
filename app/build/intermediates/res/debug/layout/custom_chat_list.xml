@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="chatting hear"
                 android:id="@+id/tvChatContent"
-                android:textSize="9sp"
+                android:textSize="12sp"
 
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/chat_balloon"
@@ -62,4 +62,4 @@
     </LinearLayout>
 
 </LinearLayout>
-<!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk/app/src/main/res/layout/custom_chat_list.xml -->
+<!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/layout/custom_chat_list.xml -->

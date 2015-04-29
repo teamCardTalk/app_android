@@ -43,8 +43,6 @@
                     android:layout_height="wrap_content"
                     android:text="글제목"
                     android:id="@+id/tvArticleTitle"
-                    android:focusable="false"
-                    android:clickable="false"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -53,8 +51,6 @@
                     android:layout_height="wrap_content"
                     android:text="시간"
                     android:id="@+id/tvArticleDate"
-                    android:focusable="false"
-                    android:clickable="false"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -72,7 +68,7 @@
             android:text="New Text"
             android:id="@+id/tvArticleContent"
             android:layout_marginTop="10dp"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:focusable="false"
             android:clickable="false"
             />
@@ -117,4 +113,4 @@
     </LinearLayout>
 
 </LinearLayout>
-<!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk/app/src/main/res/layout/custom_article_list.xml -->
+<!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/layout/custom_article_list.xml -->
