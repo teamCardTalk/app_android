@@ -721,11 +721,12 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f0a0022;
         public static final int create_calendar_title=0x7f0a0023;
         public static final int decline=0x7f0a0024;
-        public static final int hello_blank_fragment=0x7f0a0025;
-        public static final int hello_world=0x7f0a0026;
-        public static final int store_picture_message=0x7f0a0027;
-        public static final int store_picture_title=0x7f0a0028;
-        public static final int wallet_buy_button_place_holder=0x7f0a0029;
+        public static final int pref_name=0x7f0a0025;
+        public static final int server_url=0x7f0a0026;
+        public static final int server_url_value=0x7f0a0027;
+        public static final int store_picture_message=0x7f0a0028;
+        public static final int store_picture_title=0x7f0a0029;
+        public static final int wallet_buy_button_place_holder=0x7f0a002a;
     }
     public static final class style {
         /** 

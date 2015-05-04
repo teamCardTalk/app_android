@@ -22,11 +22,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ArticleViewFragment extends Fragment implements View.OnClickListener {
+public class ArticleFragment extends Fragment implements View.OnClickListener {
 
-    private ArrayList<Chat> chatList;
+    private ArrayList<ChatDTO> chatList;
     private ListView chatListView;
-    private Article article;
+    private ArticleDTO article;
     private View articleView;
     private String _id;
     private LayoutInflater inflater;
@@ -67,8 +67,8 @@ public class ArticleViewFragment extends Fragment implements View.OnClickListene
         articleView = inflater.inflate(R.layout.fragment_article_detail, chatListView, false);
         Drawable d = null;
         chatList = dao.getChatListByArticleId(_id);
-        CustomChatAdapter customChatAdapter= new CustomChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
-        chatListView.setAdapter(customChatAdapter);
+        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
+        chatListView.setAdapter(chatAdapter);
 
         TextView tvArticleDetailTitle = (TextView) articleView.findViewById(R.id.tvArticleDetailTitle);
         TextView tvArticleDetailDate = (TextView) articleView.findViewById(R.id.tvArticleDetailDate);

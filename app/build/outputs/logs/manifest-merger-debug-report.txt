@@ -205,7 +205,7 @@ MERGED from com.android.support:support-v4:22.0.0:22:5
 		ADDED from AndroidManifest.xml:16:9
 	android:theme
 		ADDED from AndroidManifest.xml:18:9
-activity#com.team.cardTalk.MainActivity
+activity#com.team.cardTalk.HomeView
 ADDED from AndroidManifest.xml:19:9
 	android:label
 		ADDED from AndroidManifest.xml:21:13

@@ -5,21 +5,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,12 +23,12 @@ import java.util.Date;
 /**
  * Created by eunjooim on 15. 3. 26..
  */
-public class CustomAdapter extends ArrayAdapter<Article> implements View.OnClickListener {
+public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClickListener {
     private Context context;
     private int layoutResourceId;
-    private ArrayList<Article> articleData;
+    private ArrayList<ArticleDTO> articleData;
 
-    public CustomAdapter(Context context, int layoutResourceId, ArrayList<Article> articleData) {
+    public CardAdapter(Context context, int layoutResourceId, ArrayList<ArticleDTO> articleData) {
         super(context, layoutResourceId, articleData);
         this.context = context;
         this.layoutResourceId = layoutResourceId;

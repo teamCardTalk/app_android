@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 /**
  * Created by eunjooim on 15. 4. 1..
  */
-public class Stock
+public class FragmentManagerStock
 {
     private static FragmentManager fragmentManager;
 

@@ -3,7 +3,7 @@ package com.team.cardTalk;
 /**
  * Created by eunjooim on 15. 3. 31..
  */
-public class Chat {
+public class ChatDTO {
     private String id;
     private String articleid;
     private String nickname;
@@ -12,7 +12,7 @@ public class Chat {
     private String content;
     private String time;
 
-    public Chat(String id, String articleid, String nickname, int nicknameid, String icon, String content, String time) {
+    public ChatDTO(String id, String articleid, String nickname, int nicknameid, String icon, String content, String time) {
         this.id = id;
         this.articleid = articleid;
         this.nickname = nickname;

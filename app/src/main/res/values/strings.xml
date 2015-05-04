@@ -3,9 +3,10 @@
 
     <string name="app_name">CardTalk</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_name">AndroidBasicPref</string>
+    <string name="server_url">ServerURL</string>
+    <string name="server_url_value">http://125.209.195.202:3000/</string>
+    <!--<string name="hello_world">Hello world!</string>-->
+    <!--<string name="hello_blank_fragment">Hello blank fragment</string>-->
 
 </resources>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,12 +21,12 @@ import java.util.Date;
 /**
  * Created by eunjooim on 15. 3. 26..
  */
-public class CustomChatAdapter extends ArrayAdapter<Chat>{
+public class ChatAdapter extends ArrayAdapter<ChatDTO>{
     private Context context;
     private int layoutResourceId;
-    private ArrayList<Chat> chatData;
+    private ArrayList<ChatDTO> chatData;
 
-    public CustomChatAdapter(Context context, int layoutResourceId, ArrayList<Chat> chatData) {
+    public ChatAdapter(Context context, int layoutResourceId, ArrayList<ChatDTO> chatData) {
         super(context, layoutResourceId, chatData);
         this.context = context;
         this.layoutResourceId = layoutResourceId;

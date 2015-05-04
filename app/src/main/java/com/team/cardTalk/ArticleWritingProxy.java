@@ -1,5 +1,7 @@
 package com.team.cardTalk;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -13,8 +15,18 @@ import java.io.FileNotFoundException;
 public class ArticleWritingProxy {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
+    private String serverUrl;
+    private SharedPreferences pref;
+    private Context context;
 
-    public static void uploadArticle(Article article, String filePath, AsyncHttpResponseHandler responseHandler) {
+    public ArticleWritingProxy(Context context) {
+        this.context = context;
+        String prefName = context.getResources().getString(R.string.pref_name);
+        pref = context.getSharedPreferences(prefName, context.MODE_PRIVATE);
+        serverUrl = pref.getString(context.getResources().getString(R.string.server_url), "");
+    }
+
+    public void uploadArticle(ArticleDTO article, String filePath, AsyncHttpResponseHandler responseHandler) {
         RequestParams params = new RequestParams();
         params.put("authorid", article.getAuthorid());
         params.put("nickname", article.getAuthor());
@@ -31,7 +43,7 @@ public class ArticleWritingProxy {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        client.post("http://125.209.195.202:3000/card", params, responseHandler);
-        Log.e("test", "card upload");
+
+        client.post(serverUrl + "card/", params, responseHandler);
     }
 }

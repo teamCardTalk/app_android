@@ -177,9 +177,9 @@ public class Dao {
         }
     }
 
-    public ArrayList<Article> getArticleList() {
+    public ArrayList<ArticleDTO> getArticleList() {
 
-        ArrayList<Article> articleList = new ArrayList<Article>();
+        ArrayList<ArticleDTO> articleList = new ArrayList<ArticleDTO>();
 
         String _id;
         int status;
@@ -214,7 +214,7 @@ public class Dao {
             chatting = cursor.getString(10);
             photo = cursor.getString(11);
 
-            articleList.add(new Article(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo));
+            articleList.add(new ArticleDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo));
         }
         cursor.close();
 
@@ -223,8 +223,8 @@ public class Dao {
     }
 
 
-    public Article getArticleByArticleId(String _id) {
-        Article article = null;
+    public ArticleDTO getArticleByArticleId(String _id) {
+        ArticleDTO article = null;
 
         int status;
         String title;
@@ -255,7 +255,7 @@ public class Dao {
         chatting = cursor.getString(10);
         photo = cursor.getString(11);
 
-        article = new Article(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo);
+        article = new ArticleDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo);
 
         cursor.close();
 
@@ -373,7 +373,7 @@ public class Dao {
 
     public ArrayList getChatListByArticleId(String _id) {
 
-        ArrayList<Chat> chatList = new ArrayList<Chat>();
+        ArrayList<ChatDTO> chatList = new ArrayList<ChatDTO>();
 
         String chatid;
         String articleid;
@@ -396,7 +396,7 @@ public class Dao {
             content = cursor.getString(5);
             time = cursor.getString(6);
 
-            chatList.add(new Chat(chatid, articleid, nickname, nicknameid, icon, content, time));
+            chatList.add(new ChatDTO(chatid, articleid, nickname, nicknameid, icon, content, time));
 
             Log.i("test", content);
         }

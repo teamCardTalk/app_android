@@ -1,6 +1,5 @@
 package com.team.cardTalk;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -29,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class ArticleWriteFragment extends Fragment implements View.OnClickListener {
+public class WritingArticleFragment extends Fragment implements View.OnClickListener {
 
     private ImageButton bt_previous;
     private Button bt_complete;
@@ -115,7 +114,7 @@ public class ArticleWriteFragment extends Fragment implements View.OnClickListen
                 String ID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
                 String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREA).format(new Date());
 
-                Article article = new Article(
+                ArticleDTO article = new ArticleDTO(
                         "temp",
                         1,
                         tvArticleWriteTitle.getText().toString(),
@@ -124,13 +123,16 @@ public class ArticleWriteFragment extends Fragment implements View.OnClickListen
                         "icon/icon2.png",
                         DATE,
                         tvArticleWriteContent.getText().toString(),
-                        5,
+                        1,
                         DATE,
                         "temp",
                         fileName
                 );
 
-                ArticleWritingProxy.uploadArticle(article, filePath,
+                ArticleWritingProxy proxy = new ArticleWritingProxy(getActivity());
+
+                proxy.uploadArticle(article, filePath,
+//                ArticleWritingProxy.uploadArticle(article, filePath,
                         new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int i, Header[] headers, byte[] bytes) {

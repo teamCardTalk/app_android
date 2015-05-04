@@ -1,17 +1,16 @@
 package com.team.cardTalk;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements OnClickListener {
+public class HomeView extends FragmentActivity implements OnClickListener {
 
 	final String TAG = "MainActivity";
 
@@ -20,11 +19,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	public final static int FRAGMENT_CHATROOMS = 1;
 	public final static int FRAGMENT_FRIENDS = 2;
 	public final static int FRAGMENT_SETTING = 3;
+    private SharedPreferences pref;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+        pref = getSharedPreferences(getResources().getString(R.string.pref_name), MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(getResources().getString(R.string.server_url), getResources().getString(R.string.server_url_value));
+        editor.commit();
 
 		ImageButton bt_articleList = (ImageButton) findViewById(R.id.bt_articleList);
         bt_articleList.setOnClickListener(this);
@@ -37,7 +42,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 		mCurrentFragmentIndex = FRAGMENT_ARTICLELIST;
 		fragmentReplace(mCurrentFragmentIndex);
-        Stock.initiateFragmentManager(getSupportFragmentManager());
+        FragmentManagerStock.initiateFragmentManager(getSupportFragmentManager());
 	}
 
 	public void fragmentReplace(int reqNewFragmentIndex) {

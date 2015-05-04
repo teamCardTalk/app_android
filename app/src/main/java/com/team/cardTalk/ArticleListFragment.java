@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 
 public class ArticleListFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
-    private ArrayList<Article> articleList;
+    private ArrayList<ArticleDTO> articleList;
     private ListView mainListView;
 
     @Override
@@ -62,8 +62,8 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
         Dao dao = new Dao(getActivity());
         articleList = dao.getArticleList();
 
-        CustomAdapter customAdapter= new CustomAdapter(getActivity(), R.layout.custom_article_list, articleList);
-        mainListView.setAdapter(customAdapter);
+        CardAdapter cardAdapter = new CardAdapter(getActivity(), R.layout.custom_article_list, articleList);
+        mainListView.setAdapter(cardAdapter);
         mainListView.setOnItemClickListener(this);
     }
 
@@ -94,7 +94,7 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Fragment newFragment = new ArticleViewFragment();
+        Fragment newFragment = new ArticleFragment();
 
         // pass data(extras) to a fragment
         Bundle bundle = new Bundle();
@@ -102,7 +102,7 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
         bundle.putString("_id", _id);
         newFragment.setArguments(bundle);
 
-        final FragmentTransaction transaction = Stock.getFragmentManager().beginTransaction();
+        final FragmentTransaction transaction = FragmentManagerStock.getFragmentManager().beginTransaction();
 
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         transaction.replace(R.id.ll_fragment, newFragment);
@@ -119,10 +119,10 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
 
             Toast.makeText(getActivity(), "Write", Toast.LENGTH_SHORT).show();
 
-            Fragment newFragment = new ArticleWriteFragment();
+            Fragment newFragment = new WritingArticleFragment();
 
             // replace fragment
-        final FragmentTransaction transaction = Stock.getFragmentManager().beginTransaction();
+        final FragmentTransaction transaction = FragmentManagerStock.getFragmentManager().beginTransaction();
 
         transaction.setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_bottom, R.anim.enter_from_bottom, R.anim.exit_to_top);
         transaction.replace(R.id.ll_fragment, newFragment);
