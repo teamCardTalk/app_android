@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +40,8 @@ public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClic
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         View row = convertView;
-        Drawable d = null;
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -78,9 +81,11 @@ public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClic
         }
 
         Button bt_peek = (Button) row.findViewById(R.id.bt_peek);
+        bt_peek.setText("엿보기 (" + articleData.get(position).getPartynumber() + "명 참여 중)");
         bt_peek.setOnClickListener(this);
 
         Button bt_enter = (Button) row.findViewById(R.id.bt_enter);
+        bt_enter.setTag(articleData.get(position).getId());
         bt_enter.setOnClickListener(this);
 
         return row;
@@ -94,7 +99,8 @@ public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClic
                 Toast.makeText(getContext(), "chatting peek", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bt_enter:
-                Toast.makeText(getContext(), "enter to chatting room", Toast.LENGTH_SHORT).show();
+                String _id = v.getTag().toString();
+                transactChatFragment(_id);
                 break;
         }
     }
@@ -107,5 +113,25 @@ public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClic
             e.printStackTrace();
         }
         return inputDate;
+    }
+
+    public void transactChatFragment(String _id) {
+        Fragment newFragment = new ChatFragment();
+
+        // pass data(extras) to a fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("_id", _id);
+        newFragment.setArguments(bundle);
+
+        final FragmentTransaction transaction = FragmentManagerStock.getFragmentManager().beginTransaction();
+
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+        transaction.replace(R.id.ll_fragment, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        Log.i("TEST", "_id : <" + _id + "> 채팅방 입장");
     }
 }

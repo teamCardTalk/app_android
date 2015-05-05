@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +10,11 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#4262A0">
+        android:background="#4262A0"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp">
 
         <com.andexert.library.RippleView
             android:id="@+id/more"
@@ -48,105 +52,86 @@
                 android:gravity="center_vertical|center_horizontal|center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="글 읽기"
-                android:id="@+id/textView"
+                android:id="@+id/tvChatTitle"
                 android:textColor="#ffffff"
                 android:layout_gravity="center" />
         </RelativeLayout>
+
+        <com.andexert.library.RippleView
+            android:id="@+id/more2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:rv_rippleDuration="150"
+            app:rv_centered="false"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:id="@+id/bt_member"
+                android:background="@drawable/ic_action_member"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="1"
+                android:paddingBottom="10dp" />
+
+        </com.andexert.library.RippleView>
     </RelativeLayout>
-    <!--<ScrollView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/scrollView">-->
+
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <!--<LinearLayout-->
-            <!--android:orientation="vertical"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-
-            <!--android:gravity="bottom|top"-->
-            <!--android:padding="10dp"-->
-            <!--android:background="@drawable/cardbg"-->
-            <!--android:layout_margin="10dp">-->
-
-            <!--<LinearLayout-->
-                <!--android:orientation="horizontal"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="6dp"-->
-                <!-->-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="54dp"-->
-                    <!--android:layout_height="54dp"-->
-                    <!--android:id="@+id/ivArticleDetailIcon"-->
-                    <!--android:layout_marginRight="12dp"-->
-                    <!--android:focusable="false"-->
-                    <!--android:clickable="false"-->
-                    <!--/>-->
-
-                <!--<LinearLayout-->
-                    <!--android:orientation="vertical"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="54dp"-->
-                    <!--android:gravity="center_vertical">-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="글제목"-->
-                        <!--android:id="@+id/tvArticleDetailTitle"-->
-                        <!--android:focusable="false"-->
-                        <!--android:clickable="false"-->
-                        <!--android:textSize="16sp"-->
-                        <!--android:textStyle="bold" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="시간"-->
-                        <!--android:id="@+id/tvArticleDetailDate"-->
-                        <!--android:focusable="false"-->
-                        <!--android:clickable="false"-->
-                        <!--/>-->
-                <!--</LinearLayout>-->
-            <!--</LinearLayout>-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/ivArticleDetailPhoto"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:layout_gravity="center" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="New Text"-->
-                <!--android:id="@+id/tvArticleDetailContent"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:textSize="11sp"-->
-                <!--android:focusable="false"-->
-                <!--android:clickable="false"-->
-                <!--/>-->
-
-            <!--<FrameLayout-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="fill_parent"></FrameLayout>-->
-
-        <!--</LinearLayout>-->
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp">
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/custom_chat_listView"
             android:scrollbars="none"
             android:divider="@null">
 
         </ListView>
+
     </LinearLayout>
-<!--</ScrollView>-->
-</LinearLayout><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/layout/fragment_article_view.xml -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#76c8fc"
+        android:padding="2dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editChat"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:background="#fff4E1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="입장"
+            android:id="@+id/btSend"
+            android:focusable="false"
+            android:background="#FF7d64"
+            android:clickable="true"
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
+    </LinearLayout>
+
+    <!--</ScrollView>-->
+</RelativeLayout><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/layout/fragment_article_view.xml -->

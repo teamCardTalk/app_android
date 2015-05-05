@@ -62,14 +62,6 @@ public class ChatAdapter extends ArrayAdapter<ChatDTO>{
             Bitmap bitmap = BitmapFactory.decodeFile(iconPath);
             ivArticleIcon.setImageBitmap(bitmap);
         }
-//        try {
-//            InputStream is = context.getAssets().open(chatData.get(position).getIcon());
-//            d = Drawable.createFromStream(is, null);
-//            ivArticleIcon.setImageDrawable(d);
-//
-//        } catch (IOException e) {
-//            Log.e("ERROR", "ERROR: " + e);
-//        }
 
         return row;
     }

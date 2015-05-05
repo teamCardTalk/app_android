@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -31,6 +32,7 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     private String _id;
     private LayoutInflater inflater;
     private View view;
+    private Button btMember;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +44,12 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
         ImageButton bt_previous = (ImageButton) view.findViewById(R.id.bt_previous);
         bt_previous.setOnClickListener(this);
+
+        btMember = (Button) view.findViewById(R.id.bt_member);
+        btMember.setOnClickListener(this);
+
+        Button btSend = (Button) view.findViewById(R.id.btSend);
+        btSend.setOnClickListener(this);
 
         _id = null;
 
@@ -65,7 +73,6 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         article = dao.getArticleByArticleId(_id);
         chatListView = (ListView) view.findViewById(R.id.custom_chat_listView);
         articleView = inflater.inflate(R.layout.fragment_article_detail, chatListView, false);
-        Drawable d = null;
         chatList = dao.getChatListByArticleId(_id);
         ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
         chatListView.setAdapter(chatAdapter);
@@ -102,6 +109,8 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         }
 
         chatListView.addHeaderView(articleView);
+        btMember.setText(article.getPartynumber() + "");
+
     }
 
     private static AsyncHttpClient client = new AsyncHttpClient();
@@ -138,7 +147,6 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_previous:
                 getFragmentManager().popBackStack();
                 break;
-
         }
     }
 
