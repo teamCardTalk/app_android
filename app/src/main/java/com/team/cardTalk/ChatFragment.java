@@ -1,27 +1,20 @@
 package com.team.cardTalk;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-
 import org.apache.http.Header;
-
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +30,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     private LayoutInflater inflater;
     private View view;
     private Button btMember;
+    private DrawerLayout drawerLayout;
+    private ListView lvDrawer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +62,9 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
         btMember = (Button) view.findViewById(R.id.bt_member);
         btMember.setOnClickListener(this);
+
+        drawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_layout);
+        lvDrawer = (ListView) view.findViewById(R.id.lv_drawer);
 
         return view;
     }
@@ -131,7 +129,11 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             case R.id.tvChatTitle:
                 String _id = v.getTag().toString();
                 transactArticleFragment(_id);
+                break;
 
+            case R.id.bt_member:
+                drawerLayout.openDrawer(lvDrawer);
+                break;
         }
     }
 

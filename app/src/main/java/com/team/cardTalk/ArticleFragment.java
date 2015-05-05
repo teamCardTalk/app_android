@@ -2,9 +2,9 @@ package com.team.cardTalk;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +33,8 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     private LayoutInflater inflater;
     private View view;
     private Button btMember;
+    private DrawerLayout drawerLayout;
+    private ListView lvDrawer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +49,9 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
         btMember = (Button) view.findViewById(R.id.bt_member);
         btMember.setOnClickListener(this);
+
+        drawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_layout);
+        lvDrawer = (ListView) view.findViewById(R.id.lv_drawer);
 
         Button btSend = (Button) view.findViewById(R.id.btSend);
         btSend.setOnClickListener(this);
@@ -146,6 +151,10 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
             case R.id.bt_previous:
                 getFragmentManager().popBackStack();
+                break;
+
+            case R.id.bt_member:
+                drawerLayout.openDrawer(lvDrawer);
                 break;
         }
     }

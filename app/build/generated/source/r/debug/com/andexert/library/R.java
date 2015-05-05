@@ -8,37 +8,37 @@ package com.andexert.library;
 
 public final class R {
 	public static final class attr {
-		public static final int rv_alpha = 0x7f01001c;
-		public static final int rv_centered = 0x7f010021;
-		public static final int rv_color = 0x7f010020;
-		public static final int rv_framerate = 0x7f01001d;
-		public static final int rv_rippleDuration = 0x7f01001e;
-		public static final int rv_ripplePadding = 0x7f010023;
-		public static final int rv_type = 0x7f010022;
-		public static final int rv_zoom = 0x7f010024;
-		public static final int rv_zoomDuration = 0x7f01001f;
-		public static final int rv_zoomScale = 0x7f010025;
+		public static final int rv_alpha = 0x7f01003e;
+		public static final int rv_centered = 0x7f010043;
+		public static final int rv_color = 0x7f010042;
+		public static final int rv_framerate = 0x7f01003f;
+		public static final int rv_rippleDuration = 0x7f010040;
+		public static final int rv_ripplePadding = 0x7f010045;
+		public static final int rv_type = 0x7f010044;
+		public static final int rv_zoom = 0x7f010046;
+		public static final int rv_zoomDuration = 0x7f010041;
+		public static final int rv_zoomScale = 0x7f010047;
 	}
 	public static final class color {
-		public static final int rippelColor = 0x7f07000a;
+		public static final int rippelColor = 0x7f07004b;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020032;
-		public static final int shape_rounded = 0x7f020039;
+		public static final int ic_launcher = 0x7f020053;
+		public static final int shape_rounded = 0x7f020057;
 	}
 	public static final class id {
-		public static final int doubleRipple = 0x7f0d0009;
-		public static final int rectangle = 0x7f0d000a;
-		public static final int simpleRipple = 0x7f0d000b;
+		public static final int doubleRipple = 0x7f09001c;
+		public static final int rectangle = 0x7f09001d;
+		public static final int simpleRipple = 0x7f09001e;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f0a0002;
+		public static final int app_name = 0x7f0b0012;
 	}
 	public static final class style {
-		public static final int AppTheme = 0x7f0b0001;
+		public static final int AppTheme = 0x7f0c0005;
 	}
 	public static final class styleable {
-		public static final int[] RippleView = { 0x7f01001c, 0x7f01001d, 0x7f01001e, 0x7f01001f, 0x7f010020, 0x7f010021, 0x7f010022, 0x7f010023, 0x7f010024, 0x7f010025 };
+		public static final int[] RippleView = { 0x7f01003e, 0x7f01003f, 0x7f010040, 0x7f010041, 0x7f010042, 0x7f010043, 0x7f010044, 0x7f010045, 0x7f010046, 0x7f010047 };
 		public static final int RippleView_rv_alpha = 0;
 		public static final int RippleView_rv_centered = 5;
 		public static final int RippleView_rv_color = 4;

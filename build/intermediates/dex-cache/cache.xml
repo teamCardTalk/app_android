@@ -9,74 +9,11 @@
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-5205e6c49da530af68a69cb0d67c3b6bc39d146d.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.0.0/classes.jar"
+        jar="/Users/eunjooim/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-4d93832925e24174ade7dd3372b8ff7197725395.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1c5a76debf0c2857ccad422c4a80ed785982f8df">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-a570997664d84426dfb6029c6bdb0e5417d7a7b4.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="17f8750d5c0749e44dd7c54aa390d9c937803825">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-ac340452d49718206f1ec1361e596632e82703cf.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-2b96000a33602443fbcc0eba03711d77cda4a6b2.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="a96b762bde4139de855735f175ec4d17dca55a6d">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-68d2b01ae3e13664de222474fcb28637c966898c.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-1b7cc521f373be13cc09f73a45b735457a11426e.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-4bab80a0b2bceac814346d0e1c3e5a6470a07801.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-395037314c62cf1b6e77b5920fcb6aad540893e9.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-44e68af47debda41a58377ca9d198d4bb9f8025e.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-6a9a76ea85a2782a809b1653087d0e6bd52fb1be.jar" />
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-d5bd97c5d82c16c0963bf449d78ef38550d5f790.jar" />
     </item>
     <item
         jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.yalantis/phoenix/1.1.0/classes.jar"
@@ -86,81 +23,32 @@
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-1f1f3dfad5124929388ed4e53d24b4fec358e00e.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.0.0/classes.jar"
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4c93d99d454c975536bbe3b42283eee847f03ea3">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-676416c639683e241c7df4d86a76bf533f6fedeb.jar" />
+        sha1="71e09cda9b05b9c4bfef8348551eaf9b72950d5a">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-c55549b54942bbea4a12b11c305df6684bc0af79.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.0.0/classes.jar"
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-aafe4eac1c903c01a51a9871da5dd72b74ae7460.jar" />
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-0d8717d215b80b167bd60469e030c91f713826e8.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/libs/internal_impl-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-10baf96b32eed4c90b2ad61df835250ae58854ab.jar" />
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-994d9bd261378aa223ed7d27a6f5b971aeab4349.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.0.0/classes.jar"
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-3e7dc8f1f4a3b179e08d689ce36140a6b3d2cdc3.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c976518693e89ad44fbfccfc654941eaec198d08">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-10e9e592055d9acc71bf0176367909d78b1bb20f.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-6a4035dc8c8b986facd11fe6db1ae27bd3044cd2.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-512c19fa814d8540e24693e96ec1207b664686f4.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="055783146ba9654a725442563be78cad303aad1f">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-4b6244a186170f045747b03c090c951897a48d00.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-70d5df1807962808f22cd77a4a062d94ba9bbc7f.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-f9a91018d515e31f6161dc51abf95760b507a5b6.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="ef5f051e7308febe289dc93c67c5f32785b4260a">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-32f60db94744a330a259a8950f553c3133352cdd.jar" />
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-ab3417f059d2cb013dadf394e6e79498ce2f33ad.jar" />
     </item>
     <item
         jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/libs/android-async-http-1.4.6.jar"
@@ -168,13 +56,6 @@
         revision="21.1.2"
         sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.6-aa4e11b8faf14288b1837fbb7d9cfa1144f6fcff.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-50a7a11a533776708a2dc76a9f16060b6fb802cc.jar" />
     </item>
 
 </items>
