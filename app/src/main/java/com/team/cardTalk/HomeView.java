@@ -76,7 +76,7 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 			newFragment = new ArticleListFragment();
 			break;
 		case FRAGMENT_CHATROOMS:
-			newFragment = new TwoFragment();
+			newFragment = new RoomListFragment();
 			break;
 		case FRAGMENT_FRIENDS:
 			newFragment = new ThreeFragment();

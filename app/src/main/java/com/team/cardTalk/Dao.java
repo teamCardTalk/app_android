@@ -9,7 +9,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by eunjooim on 15. 3. 31..
@@ -57,59 +60,21 @@ public class Dao {
             Log.e("test", "CREATE CHATS TABLE FAILED! - " + e);
             e.printStackTrace();
         }
-    }
 
-//    public String getJsonTestData() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("");
-//        sb.append("[");
-//
-//        sb.append("     {");
-//        sb.append("       'status':'1',");
-//        sb.append("       'title':'녹색 여왕의 활기찬 정원',");
-//        sb.append("       'author':'녹색 여왕',");
-//        sb.append("       'authorid':'1',");
-//        sb.append("       'icon':'icon1.png',");
-//        sb.append("       'createtime':'2015-03-20-09-10',");
-//        sb.append("       'content':'NEXT MOVIE NIGHT (feat. 빅히어로 & pizza)\n13일의 금요일 저녁을 빅히어로와 함께!\n무슨 영화??? 빅 히어로\n> 말랑말랑 마시멜로같은 히어로 본 적 있나요?',");
-//        sb.append("       'partynumber':'9',");
-//        sb.append("       'chattingtime':'2015-03-20-12-30',");
-//        sb.append("       'chatting':'',");
-//        sb.append("       'photo':'img1.png'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'status':'1',");
-//        sb.append("       'title':'핑크 마법사의 거품 욕조',");
-//        sb.append("       'author':'핑크 마법사',");
-//        sb.append("       'authorid':'2',");
-//        sb.append("       'icon':'icon2.png',");
-//        sb.append("       'createtime':'2015-03-20-09-20',");
-//        sb.append("       'content':'삼시세끼가 끝나서 산체 보는 낙이 없네 ㅠㅠ',");
-//        sb.append("       'partynumber':'3',");
-//        sb.append("       'chattingtime':'2015-03-20-13-30',");
-//        sb.append("       'chatting':'',");
-//        sb.append("       'photo':'img2.png'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'status':'1',");
-//        sb.append("       'title':'노란 조커의 은밀한 화장실',");
-//        sb.append("       'author':'노란 조커',");
-//        sb.append("       'authorid':'3',");
-//        sb.append("       'icon':'icon3.png',");
-//        sb.append("       'createtime':'2015-03-20-09-30',");
-//        sb.append("       'content':'형진이는 못하는게 뭐지',");
-//        sb.append("       'partynumber':'2',");
-//        sb.append("       'chattingtime':'2015-03-21-09-30',");
-//        sb.append("       'chatting':'',");
-//        sb.append("       'photo':''");
-//        sb.append("     }");
-//
-//        sb.append("]");
-//
-//        return sb.toString();
-//    }
+        // 채팅룸
+        try {
+            sql = "CREATE TABLE IF NOT EXISTS Rooms (articleid text primary key not null,"
+                    + "                                         authorid int not null,"
+                    + "                                         icon text not null,"
+                    + "                                         title text not null,"
+                    + "                                         time text not null,"
+                    + "                                         chat text not null)";
+            database.execSQL(sql);
+        } catch (Exception e) {
+            Log.e("test", "CREATE ROOMS TABLE FAILED! - " + e);
+            e.printStackTrace();
+        }
+    }
 
     public void insertJsonData(String jsonData) {
         String _id;
@@ -124,6 +89,9 @@ public class Dao {
         String chattingtime;
         String chatting;
         String photo;
+
+        String modcreatetime;
+        String modchattingtime;
 
         FileDownloader fileDownloader = new FileDownloader(context);
 
@@ -147,11 +115,14 @@ public class Dao {
                 JSONArray photoArray = jObj.getJSONArray("file");
                 photo = photoArray.getJSONObject(0).getString("path");
 
+                modcreatetime = parsingDate(createtime);
+                modchattingtime = parsingDate(chattingtime);
+
                 Log.i("test", "title: " + title);
 
                 String sql = "INSERT INTO CARDS (_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo)"
-                        + " VALUES('" + _id + "', " + status + ", '" + title + "', '" + nickname + "', " + authorid + ", '" + icon + "', '" + createtime + "', '" + content + "', "
-                        + partynumber + ", '" + chattingtime + "', '" + chatting + "', '" + photo + "');";
+                        + " VALUES('" + _id + "', " + status + ", '" + title + "', '" + nickname + "', " + authorid + ", '" + icon + "', '" + modcreatetime + "', '" + content + "', "
+                        + partynumber + ", '" + modchattingtime + "', '" + chatting + "', '" + photo + "');";
 
                 Log.i("test", sql);
 
@@ -193,8 +164,9 @@ public class Dao {
         String chattingtime;
         String chatting;
         String photo;
+        String modtime;
 
-        String sql = "SELECT * FROM CARDS;";
+        String sql = "SELECT * FROM CARDS order by createtime DESC;";
         Cursor cursor = database.rawQuery(sql, null);
 
         while (cursor.moveToNext()) {
@@ -219,9 +191,7 @@ public class Dao {
         cursor.close();
 
         return articleList;
-
     }
-
 
     public ArticleDTO getArticleByArticleId(String _id) {
         ArticleDTO article = null;
@@ -262,73 +232,6 @@ public class Dao {
         return article;
     }
 
-
-    // 채팅
-
-//    public String getJsonChatData() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("");
-//        sb.append("[");
-//
-//        sb.append("     {");
-//        sb.append("       'articleid':'1',");
-//        sb.append("       'nickname':'녹색 여왕',");
-//        sb.append("       'nicknameid':'1',");
-//        sb.append("       'icon':'icon1.png',");
-//        sb.append("       'content':'NEXT MOVIE NIGHT (feat. 빅히어로 & pizza)\n13일의 금요일 저녁을 빅히어로와 함께!\n무슨 영화??? 빅 히어로\n> 말랑말랑 마시멜로같은 히어로 본 적 있나요?',");
-//        sb.append("       'time':'2015-03-20-09-10'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'articleid':'1',");
-//        sb.append("       'nickname':'핑크 마법사',");
-//        sb.append("       'nicknameid':'2',");
-//        sb.append("       'icon':'icon2.png',");
-//        sb.append("       'content':'1삼시세끼가 끝나서 ㅠㅠ',");
-//        sb.append("       'time':'2015-03-20-09-20'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'articleid':'1',");
-//        sb.append("       'nickname':'노란 조커',");
-//        sb.append("       'nicknameid':'3',");
-//        sb.append("       'icon':'icon3.png',");
-//        sb.append("       'content':'형진이는 못하는게 뭐지',");
-//        sb.append("       'time':'2015-03-20-09-30'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'articleid':'2',");
-//        sb.append("       'nickname':'핑크 마법사',");
-//        sb.append("       'nicknameid':'2',");
-//        sb.append("       'icon':'icon2.png',");
-//        sb.append("       'content':'삼시세끼가 끝나서 산체 보는 낙이 없네 ㅠㅠ',");
-//        sb.append("       'time':'2015-03-20-09-20'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'articleid':'2',");
-//        sb.append("       'nickname':'노란 조커',");
-//        sb.append("       'nicknameid':'3',");
-//        sb.append("       'icon':'icon3.png',");
-//        sb.append("       'content':'형진이는 못하는게 뭐지',");
-//        sb.append("       'time':'2015-03-20-09-30'");
-//        sb.append("     },");
-//
-//        sb.append("     {");
-//        sb.append("       'articleid':'3',");
-//        sb.append("       'nickname':'노란 조커',");
-//        sb.append("       'nicknameid':'3',");
-//        sb.append("       'icon':'icon3.png',");
-//        sb.append("       'content':'형진이는 못하는게 뭐지',");
-//        sb.append("       'time':'2015-03-20-09-30'");
-//        sb.append("     }");
-//
-//        sb.append("]");
-//
-//        return sb.toString();
-//    }
-
     public void insertJsonChatData(String jsonData) {
 
         String _id;
@@ -338,6 +241,7 @@ public class Dao {
         String icon;
         String content;
         String time;
+        String modtime;
 
         try {
             JSONArray jArr = new JSONArray(jsonData);
@@ -351,11 +255,12 @@ public class Dao {
                 icon = jObj.getString("icon");
                 content = jObj.getString("content");
                 time = jObj.getString("time");
+                modtime = parsingDate(time);
 
                 Log.i("test", "title: " + content);
 
                 String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content,time)"
-                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
+                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + modtime + "');";
 
                 Log.i("test", sql);
 
@@ -403,5 +308,131 @@ public class Dao {
         cursor.close();
 
         return chatList;
+    }
+
+    public void insertJsonRoomTestData() {
+
+        String articleid = "5534781e6c881dab0ffe6403";
+        int authorid = 00000002;
+        String icon = "icon4.png";
+        String title = "붉은 왕의 고혹적인 침실";
+        String time = "04-20 12:53";
+        String chat = "형진이는 못하는게 뭐지?";
+
+        String sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
+                + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+
+        Log.i("test", sql);
+
+        try {
+            database.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        articleid = "553522479f9a77b90f8e7b18";
+        authorid = 00000002;
+        icon = "icon1.png";
+        title = "붉은 왕의 허리케인";
+        time = "04-21 01:14";
+        chat = "채팅방 테스트";
+
+        sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
+                + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+
+        Log.i("test", sql);
+
+        try {
+            database.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insertJsonRoomData(String jsonData) {
+
+        String articleid;
+        int authorid;
+        String icon;
+        String title;
+        String time;
+        String chat;
+
+        try {
+            JSONArray jArr = new JSONArray(jsonData);
+
+            for (int i = 0; i < jArr.length(); ++i) {
+                JSONObject jObj = jArr.getJSONObject(i);
+                articleid = jObj.getString("articleid");
+                authorid = jObj.getInt("authorid");
+                icon = jObj.getString("icon");
+                title = jObj.getString("title");
+                time = jObj.getString("time");
+                chat = jObj.getString("chat");
+
+                Log.i("test", "chat: " + chat);
+
+                String sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
+                        + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+
+                Log.i("test", "insert sql: " + sql);
+
+                try {
+                    database.execSQL(sql);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    sql = "UPDATE Rooms set time='" + time + "', chat = '" + chat + "' where articleid='" + articleid + "';";
+                    try {
+                        database.execSQL(sql);
+                        Log.i("test", "update sql: " + sql);
+                    } catch (Exception ec) {
+                        ec.printStackTrace();
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<RoomDTO> getRoomList() {
+
+        ArrayList<RoomDTO> roomList = new ArrayList<>();
+
+        String articleid;
+        int authorid;
+        String icon;
+        String title;
+        String time;
+        String chat;
+
+        String sql = "SELECT * FROM ROOMS ORDER BY time DESC;";
+        Cursor cursor = database.rawQuery(sql, null);
+
+        while (cursor.moveToNext()) {
+            articleid = cursor.getString(0);
+            authorid = cursor.getInt(1);
+            icon = cursor.getString(2);
+            title = cursor.getString(3);
+            time = cursor.getString(4);
+            chat = cursor.getString(5);
+
+            roomList.add(new RoomDTO(articleid, authorid, icon, title, time, chat));
+        }
+        cursor.close();
+
+        return roomList;
+    }
+
+    public String parsingDate(String inputDate) {
+        try {
+            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return inputDate;
     }
 }

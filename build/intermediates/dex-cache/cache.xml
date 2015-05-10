@@ -9,11 +9,11 @@
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-5205e6c49da530af68a69cb0d67c3b6bc39d146d.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-d5bd97c5d82c16c0963bf449d78ef38550d5f790.jar" />
+        sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-e65d18d2390ed38ee813c5f9e28ffe11f93604a9.jar" />
     </item>
     <item
         jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.yalantis/phoenix/1.1.0/classes.jar"
@@ -21,13 +21,6 @@
         revision="21.1.2"
         sha1="050f04db4bcaf972ab92b7cc56fd42c4eb97bbf4">
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-1f1f3dfad5124929388ed4e53d24b4fec358e00e.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="71e09cda9b05b9c4bfef8348551eaf9b72950d5a">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-c55549b54942bbea4a12b11c305df6684bc0af79.jar" />
     </item>
     <item
         jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/classes.jar"
@@ -42,6 +35,20 @@
         revision="21.1.2"
         sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-994d9bd261378aa223ed7d27a6f5b971aeab4349.jar" />
+    </item>
+    <item
+        jar="/Users/eunjooim/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-d5bd97c5d82c16c0963bf449d78ef38550d5f790.jar" />
+    </item>
+    <item
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="71e09cda9b05b9c4bfef8348551eaf9b72950d5a">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-c55549b54942bbea4a12b11c305df6684bc0af79.jar" />
     </item>
     <item
         jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/classes.jar"
