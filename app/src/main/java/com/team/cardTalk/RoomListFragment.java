@@ -39,9 +39,24 @@ public class RoomListFragment extends Fragment implements AdapterView.OnItemClic
         Dao dao = new Dao(getActivity());
         roomList = dao.getRoomList();
 
-        RoomAdapter roomAdapter = new RoomAdapter(getActivity(), R.layout.custom_room_list, roomList);
+        final RoomAdapter roomAdapter = new RoomAdapter(getActivity(), R.layout.custom_room_list, roomList);
         mainListView.setAdapter(roomAdapter);
         mainListView.setOnItemClickListener(this);
+
+        SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(
+                        mainListView,
+                        new SwipeDismissListViewTouchListener.OnDismissCallback() {
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    roomAdapter.remove(position);
+                                }
+                                roomAdapter.notifyDataSetChanged();
+                            }
+                        });
+        mainListView.setOnTouchListener(touchListener);
+        mainListView.setOnScrollListener(touchListener.makeScrollListener());
     }
 
     private void refreshData() {

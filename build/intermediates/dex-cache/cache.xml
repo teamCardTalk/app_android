@@ -9,13 +9,6 @@
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-5205e6c49da530af68a69cb0d67c3b6bc39d146d.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-e65d18d2390ed38ee813c5f9e28ffe11f93604a9.jar" />
-    </item>
-    <item
         jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.yalantis/phoenix/1.1.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -63,6 +56,13 @@
         revision="21.1.2"
         sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
         <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.6-aa4e11b8faf14288b1837fbb7d9cfa1144f6fcff.jar" />
+    </item>
+    <item
+        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/libs/nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/nineoldandroids-2.4.0-a81b3589c50b881b53ff3abdc18529cf814af8b4.jar" />
     </item>
 
 </items>

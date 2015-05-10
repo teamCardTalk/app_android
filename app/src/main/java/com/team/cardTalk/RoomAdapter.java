@@ -76,6 +76,13 @@ public class RoomAdapter extends ArrayAdapter<RoomDTO> {
         return inputDate;
     }
 
+    public void remove(int position) {
+        roomData.remove(roomData.get(position));
+    }
+
+    public RoomDTO getItem(int position) {
+        return roomData.get(position);
+    }
 //    public void transactChatFragment(String _id) {
 //        Fragment newFragment = new ChatFragment();
 //
