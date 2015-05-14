@@ -2,67 +2,74 @@
 <items version="2" >
 
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.github.traex.rippleeffect/library/1.2.4/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="92d981b737c081135da787938b9b12d484f42387">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-5205e6c49da530af68a69cb0d67c3b6bc39d146d.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.yalantis/phoenix/1.1.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="050f04db4bcaf972ab92b7cc56fd42c4eb97bbf4">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-1f1f3dfad5124929388ed4e53d24b4fec358e00e.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-0d8717d215b80b167bd60469e030c91f713826e8.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-994d9bd261378aa223ed7d27a6f5b971aeab4349.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jar="F:\Down\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-d5bd97c5d82c16c0963bf449d78ef38550d5f790.jar" />
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-0e75ac72499e462c1e22036dcf5fcde46f495ea4.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/classes.jar"
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\exploded-aar\br.com.liveo\navigationdrawer-material\1.2.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="71e09cda9b05b9c4bfef8348551eaf9b72950d5a">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-c55549b54942bbea4a12b11c305df6684bc0af79.jar" />
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\classes-9c9b7e1cffa3e6ea656a6040d33429a207822f37.jar" />
     </item>
     <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/classes-ab3417f059d2cb013dadf394e6e79498ce2f33ad.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/libs/android-async-http-1.4.6.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.6-aa4e11b8faf14288b1837fbb7d9cfa1144f6fcff.jar" />
-    </item>
-    <item
-        jar="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/libs/nineoldandroids-2.4.0.jar"
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\libs\nineoldandroids-2.4.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/pre-dexed/debug/nineoldandroids-2.4.0-a81b3589c50b881b53ff3abdc18529cf814af8b4.jar" />
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-20fda407510bf32f4d0a8fcb458facfe2e29b3e1.jar" />
+    </item>
+    <item
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\exploded-aar\com.github.traex.rippleeffect\library\1.2.4\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="92d981b737c081135da787938b9b12d484f42387">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\classes-42201495d9269132cccbdcfe3effd4f1452e5036.jar" />
+    </item>
+    <item
+        jar="C:\Users\Garam\.gradle\caches\modules-2\files-2.1\com.rabbitmq\amqp-client\3.5.2\8d10edd29e08f78349bd1da9d18f81c9f8b90567\amqp-client-3.5.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8d10edd29e08f78349bd1da9d18f81c9f8b90567">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\amqp-client-3.5.2-6997703b99b1dcd626da7af22d9d36bd86560b0b.jar" />
+    </item>
+    <item
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-c2fbfa49b2a0776b2abaae95e6b2b46dba3c1e85.jar" />
+    </item>
+    <item
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\classes-242acf4dbfbc1bd7aea95087bb1f8e6cbabfe8f6.jar" />
+    </item>
+    <item
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\libs\android-async-http-1.4.6.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.6-3be3e7a924985bb92e6e1f4280f10619d805bf24.jar" />
+    </item>
+    <item
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\exploded-aar\com.yalantis\phoenix\1.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="050f04db4bcaf972ab92b7cc56fd42c4eb97bbf4">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\classes-7a488d22db9cd3dec00611d1a76130e785719b34.jar" />
+    </item>
+    <item
+        jar="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="F:\Down\My Dropbox\Dropbox\debandroid-workspace\cardtalk_middle\app\build\intermediates\pre-dexed\debug\classes-52a2805d7dc882bf4953637f3406d2f295cefe42.jar" />
     </item>
 
 </items>

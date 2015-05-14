@@ -48,4 +48,4 @@
             android:fitsSystemWindows="true"
             layout="@layout/navigation_list_drawer" />
     </br.liveo.ui.ScrimInsetsFrameLayout>
-</android.support.v4.widget.DrawerLayout><!-- From: file:/Users/Rudsonlive/DevLiveo/AndroidStudio/OpenSource/NavigationDrawer-MaterialDesign/nLiveoDrawer/src/main/res/layout/navigation_main.xml --><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/layout/navigation_main.xml -->
+</android.support.v4.widget.DrawerLayout><!-- From: file:/Users/Rudsonlive/DevLiveo/AndroidStudio/OpenSource/NavigationDrawer-MaterialDesign/nLiveoDrawer/src/main/res/layout/navigation_main.xml --><!-- From: file:/F:/Down/My%20Dropbox/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/layout/navigation_main.xml -->

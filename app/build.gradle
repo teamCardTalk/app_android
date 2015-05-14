@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'br.com.liveo:navigationdrawer-material:1.2.0'
     compile files('libs/nineoldandroids-2.4.0.jar')
+    compile 'com.rabbitmq:amqp-client:3.5.2'
 }

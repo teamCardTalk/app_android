@@ -132,7 +132,6 @@ public class WritingArticleFragment extends Fragment implements View.OnClickList
                 ArticleWritingProxy proxy = new ArticleWritingProxy(getActivity());
 
                 proxy.uploadArticle(article, filePath,
-//                ArticleWritingProxy.uploadArticle(article, filePath,
                         new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int i, Header[] headers, byte[] bytes) {

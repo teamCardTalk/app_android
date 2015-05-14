@@ -49,7 +49,7 @@ public class ChatAdapter extends ArrayAdapter<ChatDTO>{
 
         tvChatNickname.setText(chatData.get(position).getNickname());
         tvChatContent.setText(chatData.get(position).getContent());
-        tvChatTime.setText(parsingDate(chatData.get(position).getTime()));
+        tvChatTime.setText(chatData.get(position).getTime());
 
         ImageView ivArticleIcon = (ImageView) row.findViewById(R.id.ivChatIcon);
 
@@ -66,13 +66,13 @@ public class ChatAdapter extends ArrayAdapter<ChatDTO>{
         return row;
     }
 
-    public String parsingDate(String inputDate) {
-        try {
-            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
-            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return inputDate;
-    }
+//    public String parsingDate(String inputDate) {
+//        try {
+//            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+//            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return inputDate;
+//    }
 }

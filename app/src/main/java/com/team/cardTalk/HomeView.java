@@ -1,5 +1,7 @@
 package com.team.cardTalk;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.QueueingConsumer;
+
+import java.io.IOException;
 
 public class HomeView extends FragmentActivity implements OnClickListener {
 
@@ -43,7 +51,41 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 		mCurrentFragmentIndex = FRAGMENT_ARTICLELIST;
 		fragmentReplace(mCurrentFragmentIndex);
         FragmentManagerStock.initiateFragmentManager(getSupportFragmentManager());
-	}
+
+        Context context = getApplicationContext();
+        Intent intentSync = new Intent(context, SyncDataService.class);
+        context.startService(intentSync);
+
+        new Thread(new Runnable()  {
+            public void run() {
+                ConnectionFactory factory = new ConnectionFactory();
+                try {
+                    factory.setHost("http://125.209.195.202");
+                    Connection connection = factory.newConnection();
+                    Channel channel = connection.createChannel();
+                    String queueName = channel.queueDeclare().getQueue();
+
+                    QueueingConsumer consumer = new QueueingConsumer(channel);
+                    channel.basicConsume(queueName, true, consumer);
+
+                    while (true) {
+                        QueueingConsumer.Delivery delivery= consumer.nextDelivery();
+                        String message = new String(delivery.getBody());
+                        String routingKey = delivery.getEnvelope().getRoutingKey();
+
+
+                        //TODO 실제 채팅 메시지로 변환
+                        Log.i("Test", "rabbitmq" + routingKey + message);
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
 	public void fragmentReplace(int reqNewFragmentIndex) {
 		Fragment newFragment = null;
@@ -54,7 +96,6 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 		transaction.replace(R.id.ll_fragment, newFragment);
         transaction.addToBackStack(null);
 		transaction.commit();
-
 	}
 
     public void fragmentAdd(int reqNewFragmentIndex) {

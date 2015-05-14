@@ -114,15 +114,15 @@ public class Dao {
                 chatting = jObj.getString("chatting");
                 JSONArray photoArray = jObj.getJSONArray("file");
                 photo = photoArray.getJSONObject(0).getString("path");
-
-                modcreatetime = parsingDate(createtime);
-                modchattingtime = parsingDate(chattingtime);
+//
+//                modcreatetime = parsingDate(createtime);
+//                modchattingtime = parsingDate(chattingtime);
 
                 Log.i("test", "title: " + title);
 
                 String sql = "INSERT INTO CARDS (_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo)"
-                        + " VALUES('" + _id + "', " + status + ", '" + title + "', '" + nickname + "', " + authorid + ", '" + icon + "', '" + modcreatetime + "', '" + content + "', "
-                        + partynumber + ", '" + modchattingtime + "', '" + chatting + "', '" + photo + "');";
+                        + " VALUES('" + _id + "', " + status + ", '" + title + "', '" + nickname + "', " + authorid + ", '" + icon + "', '" + createtime + "', '" + content + "', "
+                        + partynumber + ", '" + chattingtime + "', '" + chatting + "', '" + photo + "');";
 
                 Log.i("test", sql);
 
@@ -255,12 +255,11 @@ public class Dao {
                 icon = jObj.getString("icon");
                 content = jObj.getString("content");
                 time = jObj.getString("time");
-                modtime = parsingDate(time);
 
                 Log.i("test", "title: " + content);
 
                 String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content,time)"
-                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + modtime + "');";
+                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
 
                 Log.i("test", sql);
 
@@ -425,14 +424,14 @@ public class Dao {
 
         return roomList;
     }
-
-    public String parsingDate(String inputDate) {
-        try {
-            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
-            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return inputDate;
-    }
+//
+//    public String parsingDate(String inputDate) {
+//        try {
+//            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+//            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return inputDate;
+//    }
 }

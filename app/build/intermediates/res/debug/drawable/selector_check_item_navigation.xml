@@ -21,4 +21,4 @@
         android:drawable="@color/nliveo_transparent" />
     <item android:state_selected="false"
         android:drawable="@color/nliveo_gray"/>
-</selector><!-- From: file:/Users/Rudsonlive/DevLiveo/AndroidStudio/OpenSource/NavigationDrawer-MaterialDesign/nLiveoDrawer/src/main/res/drawable/selector_check_item_navigation.xml --><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/drawable/selector_check_item_navigation.xml -->
+</selector><!-- From: file:/Users/Rudsonlive/DevLiveo/AndroidStudio/OpenSource/NavigationDrawer-MaterialDesign/nLiveoDrawer/src/main/res/drawable/selector_check_item_navigation.xml --><!-- From: file:/F:/Down/My%20Dropbox/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/drawable/selector_check_item_navigation.xml -->

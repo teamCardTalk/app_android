@@ -53,7 +53,7 @@ public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClic
         TextView tvArticleContent = (TextView) row.findViewById(R.id.tvArticleContent);
 
         tvArticleTitle.setText(articleData.get(position).getTitle());
-        tvArticleDate.setText(parsingDate(articleData.get(position).getCreatetime()));
+        tvArticleDate.setText(articleData.get(position).getCreatetime());
 //        tvArticleDate.setText(articleData.get(position).getCreatetime());
         tvArticleContent.setText(articleData.get(position).getContent());
 
@@ -105,15 +105,15 @@ public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClic
         }
     }
 
-    public String parsingDate(String inputDate) {
-        try {
-            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
-            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return inputDate;
-    }
+//    public String parsingDate(String inputDate) {
+//        try {
+//            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+//            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return inputDate;
+//    }
 
     public void transactChatFragment(String _id) {
         Fragment newFragment = new ChatFragment();

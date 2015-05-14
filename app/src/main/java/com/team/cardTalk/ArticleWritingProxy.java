@@ -32,12 +32,8 @@ public class ArticleWritingProxy {
         params.put("nickname", article.getAuthor());
         params.put("icon", article.getIcon());
         params.put("title", article.getTitle());
-//        params.put("createtime", article.getCreatetime());
         params.put("content", article.getContent());
         params.put("partynumber", article.getPartynumber());
-//        params.put("chattingtime", article.getChattingtime());
-//        params.put("status", article.getStatus());
-//        params.put("chatting", article.getChatting());
         try {
             params.put("upload", new File(filePath));
         } catch (FileNotFoundException e) {

@@ -87,7 +87,7 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         TextView tvArticleDetailContent = (TextView) articleView.findViewById(R.id.tvArticleDetailContent);
 
         tvArticleDetailTitle.setText(article.getTitle());
-        tvArticleDetailDate.setText(parsingDate(article.getCreatetime()));
+        tvArticleDetailDate.setText(article.getCreatetime());
         tvArticleDetailContent.setText(article.getContent());
 
         ImageView ivArticleDetailIcon = (ImageView) articleView.findViewById(R.id.ivArticleDetailIcon);
@@ -159,13 +159,13 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public String parsingDate(String inputDate) {
-        try {
-            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
-            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return inputDate;
-    }
+//    public String parsingDate(String inputDate) {
+//        try {
+//            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+//            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return inputDate;
+//    }
 }

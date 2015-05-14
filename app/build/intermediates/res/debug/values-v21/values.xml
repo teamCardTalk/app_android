@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/values-v21/values.xml -->
+    <!-- From: file:/F:/Down/My%20Dropbox/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/values-v21/values.xml -->
     <eat-comment/>
     <dimen name="userBackground_layout_height">189dp</dimen>
     <dimen name="userData_layout_height">56dp</dimen>
@@ -28,7 +28,7 @@
         <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
-    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/res/values-v21/values.xml -->
+    <!-- From: file:/F:/Down/My%20Dropbox/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/res/values-v21/values.xml -->
     <eat-comment/>
     <style name="Base.TextAppearance.AppCompat" parent="android:TextAppearance.Material"/>
     <style name="Base.TextAppearance.AppCompat.Body1" parent="android:TextAppearance.Material.Body1"/>
@@ -280,7 +280,7 @@
         <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
         <item name="android:colorButtonNormal">?attr/colorButtonNormal</item>
     </style>
-    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/values-v21/values.xml -->
+    <!-- From: file:/F:/Down/My%20Dropbox/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/values-v21/values.xml -->
     <eat-comment/>
     <style name="nLiveo.Theme.DarkActionBar" parent="AppTheme.DarkActionBar"/>
     <style name="nLiveo.Theme.Light" parent="AppTheme.Ligth"/>
