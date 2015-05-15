@@ -9,10 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by eunjooim on 15. 3. 31..
@@ -90,9 +87,6 @@ public class Dao {
         String chatting;
         String photo;
 
-        String modcreatetime;
-        String modchattingtime;
-
         FileDownloader fileDownloader = new FileDownloader(context);
 
         try {
@@ -148,9 +142,9 @@ public class Dao {
         }
     }
 
-    public ArrayList<ArticleDTO> getArticleList() {
+    public ArrayList<CardDTO> getArticleList() {
 
-        ArrayList<ArticleDTO> articleList = new ArrayList<ArticleDTO>();
+        ArrayList<CardDTO> articleList = new ArrayList<CardDTO>();
 
         String _id;
         int status;
@@ -186,15 +180,15 @@ public class Dao {
             chatting = cursor.getString(10);
             photo = cursor.getString(11);
 
-            articleList.add(new ArticleDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo));
+            articleList.add(new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo));
         }
         cursor.close();
 
         return articleList;
     }
 
-    public ArticleDTO getArticleByArticleId(String _id) {
-        ArticleDTO article = null;
+    public CardDTO getArticleByArticleId(String _id) {
+        CardDTO article = null;
 
         int status;
         String title;
@@ -225,7 +219,7 @@ public class Dao {
         chatting = cursor.getString(10);
         photo = cursor.getString(11);
 
-        article = new ArticleDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo);
+        article = new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo);
 
         cursor.close();
 

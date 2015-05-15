@@ -24,12 +24,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+        <provider
+            android:authorities="com.team.cardTalk"
+            android:name="com.team.cardTalk.CardtalkProvider"
+            android:enabled="true"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:readPermission="com.team.cardTalk.READ"
+            android:writePermission="com.team.cardTalk.WRITE" />
         <activity
             android:name=".HomeView"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

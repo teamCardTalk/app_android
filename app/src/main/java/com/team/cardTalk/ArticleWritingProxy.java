@@ -2,7 +2,7 @@ package com.team.cardTalk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -26,7 +26,7 @@ public class ArticleWritingProxy {
         serverUrl = pref.getString(context.getResources().getString(R.string.server_url), "");
     }
 
-    public void uploadArticle(ArticleDTO article, String filePath, AsyncHttpResponseHandler responseHandler) {
+    public void uploadArticle(CardDTO article, String filePath, AsyncHttpResponseHandler responseHandler) {
         RequestParams params = new RequestParams();
         params.put("authorid", article.getAuthorid());
         params.put("nickname", article.getAuthor());

@@ -5,4 +5,4 @@
         android:fromXDelta="0%" android:toXDelta="0%"
         android:fromYDelta="0%" android:toYDelta="-100%"
         android:duration="300" />
-</set><!-- From: file:/F:/Down/My%20Dropbox/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/anim/exit_to_top.xml -->
+</set><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/anim/exit_to_top.xml -->

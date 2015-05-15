@@ -18,20 +18,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by eunjooim on 15. 3. 26..
  */
-public class CardAdapter extends ArrayAdapter<ArticleDTO> implements View.OnClickListener {
+public class CardAdapter extends ArrayAdapter<CardDTO> implements View.OnClickListener {
     private Context context;
     private int layoutResourceId;
-    private ArrayList<ArticleDTO> articleData;
+    private ArrayList<CardDTO> articleData;
 
-    public CardAdapter(Context context, int layoutResourceId, ArrayList<ArticleDTO> articleData) {
+    public CardAdapter(Context context, int layoutResourceId, ArrayList<CardDTO> articleData) {
         super(context, layoutResourceId, articleData);
         this.context = context;
         this.layoutResourceId = layoutResourceId;

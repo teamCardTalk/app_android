@@ -114,7 +114,7 @@ public class WritingArticleFragment extends Fragment implements View.OnClickList
                 String ID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
                 String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREA).format(new Date());
 
-                ArticleDTO article = new ArticleDTO(
+                CardDTO article = new CardDTO(
                         "temp",
                         1,
                         tvArticleWriteTitle.getText().toString(),

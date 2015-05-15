@@ -1,6 +1,7 @@
 package com.team.cardTalk;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -11,20 +12,24 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+
 import com.yalantis.phoenix.PullToRefreshView;
-import org.apache.http.Header;
+
 import java.util.ArrayList;
 
 
 public class ArticleListFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
-    private ArrayList<ArticleDTO> articleList;
+    private ArrayList<CardDTO> articleList;
     private ListView mainListView;
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+
+        if(android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         View view = inflater.inflate(R.layout.fragment_article_list, container, false);
 
@@ -46,7 +51,6 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
 
         ImageButton bt_write = (ImageButton) view.findViewById(R.id.bt_write);
         bt_write.setOnClickListener(this);
-//        refreshData();
 
 		return view;
 	}
@@ -57,40 +61,49 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
         refreshData();
     }
 
-    // network 4/16
     private void listView() {
-        Dao dao = new Dao(getActivity());
+        ProviderDao dao = new ProviderDao(getActivity());
         articleList = dao.getArticleList();
+
+        Log.i("TEST", "articleList.size: " + articleList.size());
 
         CardAdapter cardAdapter = new CardAdapter(getActivity(), R.layout.custom_article_list, articleList);
         mainListView.setAdapter(cardAdapter);
         mainListView.setOnItemClickListener(this);
+        dao.close();
     }
 
-    // network 4/16
-    private static AsyncHttpClient client = new AsyncHttpClient();
+
+//    private static AsyncHttpClient client = new AsyncHttpClient();
 
     private void refreshData() {
 
-        Log.i("test", "refreshData");
-        client.get("http://125.209.195.202:3000/card/all", new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                Log.i("test","AsyncHttpClient.get succeeded!");
-                String jsonData = new String(bytes);
-                Log.i("test", "jsonData: " + jsonData);
+//        Log.i("test", "refreshData");
+//        client.get("http://125.209.195.202:3000/card/all", new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+//                Log.i("test","AsyncHttpClient.get succeeded!");
+//                String jsonData = new String(bytes);
+//                Log.i("test", "jsonData: " + jsonData);
 
-                Dao dao = new Dao(getActivity());
-                dao.insertJsonData(jsonData);
+        Proxy proxy = new Proxy(getActivity());
+        ProviderDao dao = new ProviderDao(getActivity());
+
+        String jsonData = proxy.getJSON();
+        dao.insertJsonData(jsonData);
+
+//                ProviderDao dao = new ProviderDao(getActivity());
+//                dao.insertJsonData(jsonData);
 
                 listView();
-            }
-
-            @Override
-            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                Log.i("test", "AsyncHttpClient.get failed!");
-            }
-        });
+//            }
+//
+//            @Override
+//            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+//                Log.i("test", "AsyncHttpClient.get failed!");
+//            }
+//        });
+        dao.close();
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

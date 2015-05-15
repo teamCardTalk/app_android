@@ -18,16 +18,13 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.apache.http.Header;
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ArticleFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<ChatDTO> chatList;
     private ListView chatListView;
-    private ArticleDTO article;
+    private CardDTO article;
     private View articleView;
     private String _id;
     private LayoutInflater inflater;
@@ -74,8 +71,9 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     }
 
     private void listView() {
+        ProviderDao pdao = new ProviderDao(getActivity());
         Dao dao = new Dao(getActivity());
-        article = dao.getArticleByArticleId(_id);
+        article = pdao.getArticleByArticleId(_id);
         chatListView = (ListView) view.findViewById(R.id.custom_chat_listView);
         articleView = inflater.inflate(R.layout.fragment_article_detail, chatListView, false);
         chatList = dao.getChatListByArticleId(_id);
@@ -116,6 +114,7 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         chatListView.addHeaderView(articleView);
         btMember.setText(article.getPartynumber() + "");
 
+        pdao.close();
     }
 
     private static AsyncHttpClient client = new AsyncHttpClient();

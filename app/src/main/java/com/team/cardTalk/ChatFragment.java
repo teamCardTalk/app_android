@@ -24,7 +24,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<ChatDTO> chatList;
     private ListView chatListView;
-    private ArticleDTO article;
+    private CardDTO article;
     private View articleView;
     private String _id;
     private LayoutInflater inflater;
@@ -54,7 +54,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         TextView tvChatTitle = (TextView) view.findViewById(R.id.tvChatTitle);
 
         Dao dao = new Dao(getActivity());
-        ArticleDTO article = dao.getArticleByArticleId(_id);
+        CardDTO article = dao.getArticleByArticleId(_id);
 
         tvChatTitle.setText(article.getTitle());
         tvChatTitle.setTag(_id);

@@ -3,7 +3,7 @@ package com.team.cardTalk;
 /**
  * Created by eunjooim on 15. 3. 31..
  */
-public class ArticleDTO {
+public class CardDTO {
     private String _id;
     private int status;
     private String title;
@@ -18,7 +18,7 @@ public class ArticleDTO {
     private String photo;
 
 
-    public ArticleDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
+    public CardDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
         this._id = _id;
         this.status = status;
         this.title = title;
