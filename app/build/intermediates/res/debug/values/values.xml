@@ -283,6 +283,7 @@
     <string name="drawer_open">Open drawer navigation</string>
     <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="pref_cardkey">cardkey</string>
     <string name="pref_name">AndroidBasicPref</string>
     <string name="server_url">ServerURL</string>
     <string name="server_url_value">http://125.209.195.202:3000/</string>

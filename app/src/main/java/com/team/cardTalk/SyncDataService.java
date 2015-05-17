@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,6 +21,7 @@ public class SyncDataService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
         proxy = new Proxy(getApplicationContext());
         dao = new ProviderDao(getApplicationContext());
     }
@@ -32,13 +32,14 @@ public class SyncDataService extends Service {
         mTask = new TimerTask() {
             @Override
             public void run() {
-                String jsonData = proxy.getJSON();
+
+                String jsonData = proxy.getNewJSON();
                 dao.insertJsonData(jsonData);
             }
         };
 
         mTimer = new Timer();
-        mTimer.schedule(mTask, 1000 * 10, 1000 * 10);
+        mTimer.schedule(mTask, 1000 * 10, 1000 * 60);
 
         return super.onStartCommand(intent, flags, startId);
     }

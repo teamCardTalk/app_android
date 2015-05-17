@@ -2,8 +2,10 @@ package com.team.cardTalk;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.StrictMode;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -81,7 +83,8 @@ public class ProviderDao {
     }
 
     public void insertJsonData(String jsonData) {
-        if (jsonData == null) return;
+
+        if (jsonData == null || jsonData.isEmpty()) return;
 
         String _id;
         int status;
@@ -95,12 +98,12 @@ public class ProviderDao {
         String chattingtime;
         String chatting;
         String photo;
+        SharedPreferences pref;
 
         FileDownloader fileDownloader = new FileDownloader(context);
 
         try {
             JSONArray jArr = new JSONArray(jsonData);
-            Log.i("test", "jArr = " + jArr);
 
             for (int i = 0; i < jArr.length(); ++i) {
                 JSONObject jObj = jArr.getJSONObject(i);
@@ -118,6 +121,17 @@ public class ProviderDao {
                 JSONArray photoArray = jObj.getJSONArray("file");
                 photo = photoArray.getJSONObject(0).getString("path");
 
+                Log.i("test", "jArr length: " + jArr.length() + ", i: " + i);
+
+                if (i == jArr.length() - 1) {
+                    pref = context.getSharedPreferences(context.getResources().getString(R.string.pref_name), context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString(context.getResources().getString(R.string.pref_cardkey), _id);
+                    editor.commit();
+
+                    Log.i("test", "updated cardkey: " + pref.getString(context.getResources().getString(R.string.pref_cardkey), ""));
+                }
+
                 ContentValues values = new ContentValues();
                 icon = icon.replaceAll("icon/", "");
                 photo = photo.replaceFirst("data/", "");
@@ -134,12 +148,16 @@ public class ProviderDao {
                 values.put("Chatting", chatting);
                 values.put("Photo", photo);
 
+                context.getContentResolver().insert(CardtalkContract.Cards.CONTENT_URI, values);
+
                 Log.i("test", "icon: " + icon);
                 fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
 
                 if (photo != null) {
                     Log.i("test", "photo: " + photo);
                     fileDownloader.downFile("http://125.209.195.202:3000/image/photo=" + photo, photo);
+
+                    Log.i("test", "insertJsonData: " + title + ", " + _id);
                 }
             }
         } catch (JSONException e) {
@@ -195,7 +213,6 @@ public class ProviderDao {
                 chatting = cursor.getString(10);
                 photo = cursor.getString(11);
 
-                Log.i("TEST", "cursor detail: " + _id+status+title+nickname+authorid+icon+createtime+content+partynumber+chattingtime+chatting+photo);
                 cardList.add(new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo));
                 cursor.moveToNext();
             }

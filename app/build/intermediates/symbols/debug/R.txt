@@ -748,9 +748,10 @@ int string app_name 0x7f0b0012
 int string clear 0x7f0b0013
 int string drawer_close 0x7f0b0014
 int string drawer_open 0x7f0b0015
-int string pref_name 0x7f0b0016
-int string server_url 0x7f0b0017
-int string server_url_value 0x7f0b0018
+int string pref_cardkey 0x7f0b0016
+int string pref_name 0x7f0b0017
+int string server_url 0x7f0b0018
+int string server_url_value 0x7f0b0019
 int style AlertDialog_AppCompat 0x7f0c0000
 int style AlertDialog_AppCompat_Light 0x7f0c0001
 int style Animation_AppCompat_Dialog 0x7f0c0002

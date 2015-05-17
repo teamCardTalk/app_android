@@ -2000,9 +2000,10 @@ containing a value of this type.
         public static final int clear=0x7f0b0013;
         public static final int drawer_close=0x7f0b0014;
         public static final int drawer_open=0x7f0b0015;
-        public static final int pref_name=0x7f0b0016;
-        public static final int server_url=0x7f0b0017;
-        public static final int server_url_value=0x7f0b0018;
+        public static final int pref_cardkey=0x7f0b0016;
+        public static final int pref_name=0x7f0b0017;
+        public static final int server_url=0x7f0b0018;
+        public static final int server_url_value=0x7f0b0019;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0c0000;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -32,6 +33,12 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+//		if (android.os.Build.VERSION.SDK_INT > 9) {
+//			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//			StrictMode.setThreadPolicy(policy);
+//		}
+
 		setContentView(R.layout.activity_main);
 
         pref = getSharedPreferences(getResources().getString(R.string.pref_name), MODE_PRIVATE);
@@ -52,6 +59,7 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 		fragmentReplace(mCurrentFragmentIndex);
         FragmentManagerStock.initiateFragmentManager(getSupportFragmentManager());
 
+		// service 실행
         Context context = getApplicationContext();
         Intent intentSync = new Intent(context, SyncDataService.class);
         context.startService(intentSync);

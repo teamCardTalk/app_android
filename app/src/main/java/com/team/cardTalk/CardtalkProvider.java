@@ -9,6 +9,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -32,7 +33,6 @@ public class CardtalkProvider extends ContentProvider{
         URI_MATCHER.addURI(CardtalkContract.AUTHORITY, "Cards", CARD_LIST);
         URI_MATCHER.addURI(CardtalkContract.AUTHORITY, "Cards/#", CARD_ID);
     }
-
 
     private void sqLiteInitialize() {
         database = context.openOrCreateDatabase("LocalData.db", SQLiteDatabase.CREATE_IF_NECESSARY, null);
@@ -128,6 +128,7 @@ public class CardtalkProvider extends ContentProvider{
     public boolean onCreate() {
         this.context = getContext();
         sqLiteInitialize();
+
         if (!isTablesExist()) {
             createTables();
             return true;
@@ -179,6 +180,7 @@ public class CardtalkProvider extends ContentProvider{
         else {
             long id = database.insert("Cards", null, values);
             Uri itemUri = ContentUris.withAppendedId(uri, id);
+
             getContext().getContentResolver().notifyChange(itemUri, null);
 
             return itemUri;
