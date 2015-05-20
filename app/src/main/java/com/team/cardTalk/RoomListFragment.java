@@ -16,11 +16,13 @@ import java.util.ArrayList;
 public class RoomListFragment extends Fragment implements AdapterView.OnItemClickListener {
     private ArrayList<RoomDTO> roomList;
     private ListView mainListView;
+    private ProviderDao dao;
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+        dao = new ProviderDao(getActivity());
         View view = inflater.inflate(R.layout.fragment_room_list, container, false);
 
         mainListView = (ListView) view.findViewById(R.id.custom_room_listView);
@@ -36,7 +38,6 @@ public class RoomListFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void listView() {
-        Dao dao = new Dao(getActivity());
         roomList = dao.getRoomList();
 
         final RoomAdapter roomAdapter = new RoomAdapter(getActivity(), R.layout.custom_room_list, roomList);
@@ -60,7 +61,6 @@ public class RoomListFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void refreshData() {
-        Dao dao = new Dao(getActivity());
         dao.insertJsonRoomTestData();
     }
 

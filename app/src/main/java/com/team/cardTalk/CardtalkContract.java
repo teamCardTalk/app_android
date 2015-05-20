@@ -34,4 +34,25 @@ public final class CardtalkContract {
 
         public static final String SORT_ORDER_DEFAULT = CREATETIME + " DESC";
     }
+
+    public static final class Chats implements BaseColumns {
+        public static final String _ID= "_id";
+        public static final String ARTICLEID = "articleid";
+        public static final String NICKNAME = "nickname";
+        public static final String USERID = "userid";
+        public static final String ICON = "icon";
+        public static final String CONTENT = "content";
+        public static final String TIME = "time";
+
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(
+                CardtalkContract.CONTENT_URI, Chats.class.getSimpleName()
+        );
+
+        public static final String[] PROJECTION_ALL = {
+                _ID, ARTICLEID, NICKNAME, USERID, ICON, CONTENT, TIME
+        };
+
+        public static final String SORT_ORDER_DEFAULT = TIME + " ASC";
+    }
 }

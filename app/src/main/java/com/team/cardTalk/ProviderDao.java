@@ -166,23 +166,7 @@ public class ProviderDao {
         }
     }
 
-    public ArrayList<CardDTO> getArticleList() {
-
-        ArrayList<CardDTO> cardList = new ArrayList<>();
-
-        String _id;
-        int status;
-        String title;
-        String nickname;
-        int authorid;
-        String icon;
-        String createtime;
-        String content;
-        int partynumber;
-        String chattingtime;
-        String chatting;
-        String photo;
-//        String modtime;
+    public Cursor getArticleList() {
 
         Cursor cursor = context.getContentResolver().query(
                 CardtalkContract.Cards.CONTENT_URI,
@@ -190,37 +174,7 @@ public class ProviderDao {
                 CardtalkContract.Cards.SORT_ORDER_DEFAULT
         );
 
-//        String sql = "SELECT * FROM CARDS order by createtime DESC;";
-//        Cursor cursor = database.rawQuery(sql, null);
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-
-            while (!(cursor.isAfterLast())) {
-                _id = cursor.getString(0);
-                status = cursor.getInt(1);
-                title = cursor.getString(2);
-                nickname = cursor.getString(3);
-                authorid = cursor.getInt(4);
-                icon = cursor.getString(5);
-                createtime = cursor.getString(6);
-                content = cursor.getString(7);
-                if (content.length() > 60) {
-                    content = content.substring(0, 60) + "  ...더보기";
-                }
-                partynumber = cursor.getInt(8);
-                chattingtime = cursor.getString(9);
-                chatting = cursor.getString(10);
-                photo = cursor.getString(11);
-
-                cardList.add(new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo));
-                cursor.moveToNext();
-            }
-        }
-
-        cursor.close();
-
-        return cardList;
+        return cursor;
     }
 
     public CardDTO getArticleByArticleId(String _id) {
@@ -281,7 +235,6 @@ public class ProviderDao {
         String icon;
         String content;
         String time;
-        String modtime;
 
         try {
             JSONArray jArr = new JSONArray(jsonData);
@@ -315,39 +268,68 @@ public class ProviderDao {
         }
     }
 
-    public ArrayList getChatListByArticleId(String _id) {
+    public Cursor getChatListByArticleId(String _id) {
 
-        ArrayList<ChatDTO> chatList = new ArrayList<ChatDTO>();
+        String where = "articleid='" + _id + "'";
 
-        String chatid;
-        String articleid;
-        String nickname;
-        int nicknameid;
-        String icon;
-        String content;
-        String time;
+        Log.i("test", "chatList where: " + where);
+        Cursor cursor = context.getContentResolver().query(
+                CardtalkContract.Chats.CONTENT_URI,
+                CardtalkContract.Chats.PROJECTION_ALL, where, null,
+                CardtalkContract.Chats.SORT_ORDER_DEFAULT
+        );
 
-        String sql = "SELECT * FROM CHATS WHERE articleid = '" + _id + "';";
-        Cursor cursor = database.rawQuery(sql, null);
-
-        while (cursor.moveToNext()) {
-
-            chatid = cursor.getString(0);
-            articleid = cursor.getString(1);
-            nickname = cursor.getString(2);
-            nicknameid = cursor.getInt(3);
-            icon = cursor.getString(4);
-            content = cursor.getString(5);
-            time = cursor.getString(6);
-
-            chatList.add(new ChatDTO(chatid, articleid, nickname, nicknameid, icon, content, time));
-
-            Log.i("test", content);
-        }
-        cursor.close();
-
-        return chatList;
+        return cursor;
     }
+
+//    public ArrayList getChatListByArticleId2(String _id) {
+//
+//        ArrayList<ChatDTO> chatList = new ArrayList<ChatDTO>();
+//
+//        String chatid;
+//        String articleid;
+//        String nickname;
+//        int nicknameid;
+//        String icon;
+//        String content;
+//        String time;
+//
+////        String sql = "SELECT * FROM CHATS WHERE articleid = '" + _id + "';";
+//
+//        String where = "articleid='" + _id + "'";
+//
+//        Log.i("test", "chatList where: " + where);
+//        Cursor cursor = context.getContentResolver().query(
+//                CardtalkContract.Chats.CONTENT_URI,
+//                CardtalkContract.Chats.PROJECTION_ALL, where, null,
+//                CardtalkContract.Chats.SORT_ORDER_DEFAULT
+//        );
+//
+////        Cursor cursor = database.rawQuery(sql, null);
+//
+//        if (cursor != null) {
+//            cursor.moveToFirst();
+//
+//            while (cursor.moveToNext()) {
+//
+//                chatid = cursor.getString(0);
+//                articleid = cursor.getString(1);
+//                nickname = cursor.getString(2);
+//                nicknameid = cursor.getInt(3);
+//                icon = cursor.getString(4);
+//                content = cursor.getString(5);
+//                time = cursor.getString(6);
+//
+//                chatList.add(new ChatDTO(chatid, articleid, nickname, nicknameid, icon, content, time));
+//
+//                Log.i("test", content);
+//            }
+//        }
+//
+//        cursor.close();
+//
+//        return chatList;
+//    }
 
     public void insertJsonRoomTestData() {
 

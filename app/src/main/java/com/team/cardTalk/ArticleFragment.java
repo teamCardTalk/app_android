@@ -1,5 +1,6 @@
 package com.team.cardTalk;
 
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class ArticleFragment extends Fragment implements View.OnClickListener {
-
+    private Cursor cursor;
     private ArrayList<ChatDTO> chatList;
     private ListView chatListView;
     private CardDTO article;
@@ -32,10 +33,13 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     private Button btMember;
     private DrawerLayout drawerLayout;
     private ListView lvDrawer;
+    private ProviderDao dao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dao = new ProviderDao(getActivity());
 
         this.inflater = inflater;
         Log.i("test", "articleViewFragment-onCreateView");
@@ -71,14 +75,20 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     }
 
     private void listView() {
-        ProviderDao pdao = new ProviderDao(getActivity());
-        Dao dao = new Dao(getActivity());
-        article = pdao.getArticleByArticleId(_id);
+
+        article = dao.getArticleByArticleId(_id);
         chatListView = (ListView) view.findViewById(R.id.custom_chat_listView);
         articleView = inflater.inflate(R.layout.fragment_article_detail, chatListView, false);
-        chatList = dao.getChatListByArticleId(_id);
-        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
+
+        cursor = dao.getChatListByArticleId(_id);
+
+        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), cursor, R.layout.custom_chat_list);
         chatListView.setAdapter(chatAdapter);
+
+//        chatList = dao.getChatListByArticleId(_id);
+//        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
+//        chatListView.setAdapter(chatAdapter);
+
 
         TextView tvArticleDetailTitle = (TextView) articleView.findViewById(R.id.tvArticleDetailTitle);
         TextView tvArticleDetailDate = (TextView) articleView.findViewById(R.id.tvArticleDetailDate);
@@ -113,34 +123,38 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
         chatListView.addHeaderView(articleView);
         btMember.setText(article.getPartynumber() + "");
-
-        pdao.close();
     }
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+//    private static AsyncHttpClient client = new AsyncHttpClient();
 
     private void refreshData() {
-        Log.i("test", "refreshChatData");
-        String query = "http://125.209.195.202:3000/chat/" + _id;
-        Log.i("test", "query: " + query);
 
-        client.get(query, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                Log.i("test","chat:AsyncHttpClient.get succeeded!");
+        Proxy proxy = new Proxy(getActivity());
+        ProviderDao dao = new ProviderDao(getActivity());
+        String jsonData = proxy.getChatJSON(_id);
+        dao.insertJsonChatData(jsonData);
 
-                String jsonData = new String(bytes);
-                Log.i("test", "jsonData: " + jsonData);
-
-                Dao dao = new Dao(getActivity());
-                dao.insertJsonChatData(jsonData);
-            }
-
-            @Override
-            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                Log.i("test", "chat:AsyncHttpClient.get failed!");
-            }
-        });
+//        Log.i("test", "refreshChatData");
+//        String query = "http://125.209.195.202:3000/chat/" + _id;
+//        Log.i("test", "query: " + query);
+//
+//        client.get(query, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+//                Log.i("test","chat:AsyncHttpClient.get succeeded!");
+//
+//                String jsonData = new String(bytes);
+//                Log.i("test", "jsonData: " + jsonData);
+//
+//                ProviderDao dao = new ProviderDao(getActivity());
+//                dao.insertJsonChatData(jsonData);
+//            }
+//
+//            @Override
+//            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+//                Log.i("test", "chat:AsyncHttpClient.get failed!");
+//            }
+//        });
     }
 
     @Override

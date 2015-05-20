@@ -25,13 +25,18 @@ public class CardtalkProvider extends ContentProvider{
     private final String TABLE_NAME1 = "Cards";
     private final String TABLE_NAME2 = "Chats";
     private final String TABLE_NAME3 = "Rooms";
+
     private static final int CARD_LIST = 1;
     private static final int CARD_ID = 2;
+    private static final int CHAT_ID = 3;
+    private static final int ROOM_LIST = 4;
+    private static final int ROOM_ID = 5;
     private static final UriMatcher URI_MATCHER;
     static {
         URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
         URI_MATCHER.addURI(CardtalkContract.AUTHORITY, "Cards", CARD_LIST);
         URI_MATCHER.addURI(CardtalkContract.AUTHORITY, "Cards/#", CARD_ID);
+        URI_MATCHER.addURI(CardtalkContract.AUTHORITY, "Chats", CHAT_ID);
     }
 
     private void sqLiteInitialize() {
@@ -138,12 +143,18 @@ public class CardtalkProvider extends ContentProvider{
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+
+        Cursor cursor;
         switch (URI_MATCHER.match(uri)) {
             case CARD_LIST:
                 if (TextUtils.isEmpty(sortOrder)) {
                     sortOrder = CardtalkContract.Cards.SORT_ORDER_DEFAULT;
                 }
-                break;
+                cursor = database.query(TABLE_NAME1, CardtalkContract.Cards.PROJECTION_ALL, selection,
+                        selectionArgs, null, null, sortOrder);
+                cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+                return cursor;
             case CARD_ID:
                 if (TextUtils.isEmpty(sortOrder)) {
                     sortOrder = CardtalkContract.Cards.SORT_ORDER_DEFAULT;
@@ -153,16 +164,34 @@ public class CardtalkProvider extends ContentProvider{
                     selection = "_ID = ?";
                     selectionArgs = new String[] {uri.getLastPathSegment()};
                 }
-                break;
+                cursor = database.query(TABLE_NAME1, CardtalkContract.Cards.PROJECTION_ALL, selection,
+                        selectionArgs, null, null, sortOrder);
+                cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+                return cursor;
+            case CHAT_ID:
+                if (TextUtils.isEmpty(sortOrder)) {
+                    sortOrder = CardtalkContract.Chats.SORT_ORDER_DEFAULT;
+                }
+
+                if (selection == null) {
+                    selection = "ARTICLEID = ?";
+                    selectionArgs = new String[] {uri.getLastPathSegment()};
+                }
+                cursor = database.query(TABLE_NAME2, CardtalkContract.Chats.PROJECTION_ALL, selection,
+                        selectionArgs, null, null, sortOrder);
+                cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+                return cursor;
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
-
-        Cursor cursor = database.query(TABLE_NAME1, CardtalkContract.Cards.PROJECTION_ALL, selection,
-                selectionArgs, null, null, sortOrder);
-        cursor.setNotificationUri(getContext().getContentResolver(), uri);
-
-        return cursor;
+//
+//        cursor = database.query(TABLE_NAME1, CardtalkContract.Cards.PROJECTION_ALL, selection,
+//                selectionArgs, null, null, sortOrder);
+//        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+//
+//        return cursor;
     }
 
     @Override

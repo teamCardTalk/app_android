@@ -32,6 +32,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     private Button btMember;
     private DrawerLayout drawerLayout;
     private ListView lvDrawer;
+    private ProviderDao dao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +54,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
         TextView tvChatTitle = (TextView) view.findViewById(R.id.tvChatTitle);
 
-        Dao dao = new Dao(getActivity());
+        dao = new ProviderDao(getActivity());
         CardDTO article = dao.getArticleByArticleId(_id);
 
         tvChatTitle.setText(article.getTitle());
@@ -77,13 +78,13 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     }
 
     private void listView() {
-        Dao dao = new Dao(getActivity());
+
         article = dao.getArticleByArticleId(_id);
         chatListView = (ListView) view.findViewById(R.id.custom_chat_listView);
 
-        chatList = dao.getChatListByArticleId(_id);
-        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
-        chatListView.setAdapter(chatAdapter);
+//        chatList = dao.getChatListByArticleId(_id);
+//        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
+//        chatListView.setAdapter(chatAdapter);
 
         btMember.setText(article.getPartynumber() + "");
 
@@ -106,7 +107,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 String jsonData = new String(bytes);
                 Log.i("test", "jsonData: " + jsonData);
 
-                Dao dao = new Dao(getActivity());
+                ProviderDao dao = new ProviderDao(getActivity());
                 dao.insertJsonChatData(jsonData);
             }
 
@@ -137,15 +138,15 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public String parsingDate(String inputDate) {
-        try {
-            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
-            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return inputDate;
-    }
+//    public String parsingDate(String inputDate) {
+//        try {
+//            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
+//            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return inputDate;
+//    }
 
     public void transactArticleFragment(String _id) {
         Fragment newFragment = new ArticleFragment();

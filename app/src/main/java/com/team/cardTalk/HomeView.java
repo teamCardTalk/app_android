@@ -68,7 +68,7 @@ public class HomeView extends FragmentActivity implements OnClickListener {
             public void run() {
                 ConnectionFactory factory = new ConnectionFactory();
                 try {
-                    factory.setHost("http://125.209.195.202");
+                    factory.setHost("125.209.195.202");
                     Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel();
                     String queueName = channel.queueDeclare().getQueue();
@@ -80,7 +80,6 @@ public class HomeView extends FragmentActivity implements OnClickListener {
                         QueueingConsumer.Delivery delivery= consumer.nextDelivery();
                         String message = new String(delivery.getBody());
                         String routingKey = delivery.getEnvelope().getRoutingKey();
-
 
                         //TODO 실제 채팅 메시지로 변환
                         Log.i("Test", "rabbitmq" + routingKey + message);

@@ -18,6 +18,7 @@ import com.yalantis.phoenix.PullToRefreshView;
 
 public class ArticleListFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 //    private ArrayList<CardDTO> articleList;
+    private ProviderDao dao;
     private ListView mainListView;
     private Cursor cursor;
 
@@ -56,11 +57,7 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
     }
 
     private void listView() {
-        cursor = getActivity().getContentResolver().query(
-                CardtalkContract.Cards.CONTENT_URI,
-                CardtalkContract.Cards.PROJECTION_ALL, null, null,
-                CardtalkContract.Cards.SORT_ORDER_DEFAULT
-        );
+        cursor = dao.getArticleList();
 
         CardAdapter cardAdapter = new CardAdapter(getActivity(), cursor, R.layout.custom_article_list);
         mainListView.setAdapter(cardAdapter);
@@ -69,12 +66,13 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
 
     private void refreshData() {
         Proxy proxy = new Proxy(getActivity());
-        ProviderDao dao = new ProviderDao(getActivity());
+        dao = new ProviderDao(getActivity());
         String jsonData = proxy.getJSON();
         dao.insertJsonData(jsonData);
 
         listView();
     }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment newFragment = new ArticleFragment();
