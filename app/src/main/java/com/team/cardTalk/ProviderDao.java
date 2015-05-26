@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class ProviderDao {
     private Context context;
     private SQLiteDatabase database;
+    private SharedPreferences pref;
     private final String TABLE_NAME = "Cards";
 
     public ProviderDao(Context context) {
@@ -90,15 +91,16 @@ public class ProviderDao {
         int status;
         String title;
         String nickname;
-        int authorid;
+        String authorid;
         String icon;
         String createtime;
         String content;
         int partynumber;
-        String chattingtime;
-        String chatting;
+//        String chattingtime;
+//        String chatting;
         String photo;
-        SharedPreferences pref;
+
+        String author;
 
         FileDownloader fileDownloader = new FileDownloader(context);
 
@@ -110,14 +112,24 @@ public class ProviderDao {
                 _id = jObj.getString("_id");
                 status = jObj.getInt("status");
                 title = jObj.getString("title");
-                nickname = jObj.getString("nickname");
-                authorid = jObj.getInt("authorid");
-                icon = jObj.getString("icon");
+
+                author = jObj.getString("author");
+                JSONObject authorObj = new JSONObject(author);
+
+                nickname = authorObj.getString("nickname");
+                authorid = authorObj.getString("userid");
+                icon = authorObj.getString("icon");
+
+                Log.i("test", "author: " + nickname + ", " + authorid + ", " + icon);
                 createtime = jObj.getString("createtime");
                 content = jObj.getString("content");
                 partynumber = jObj.getInt("partynumber");
-                chattingtime = jObj.getString("chattingtime");
-                chatting = jObj.getString("chatting");
+
+//                if (jObj.getString("chattingtime") != null) {
+//                    chattingtime = jObj.getString("chattingtime");
+//                }
+//                chattingtime = "null";
+//                chatting = jObj.getString("chatting");
                 JSONArray photoArray = jObj.getJSONArray("file");
                 photo = photoArray.getJSONObject(0).getString("path");
 
@@ -134,7 +146,7 @@ public class ProviderDao {
 
                 ContentValues values = new ContentValues();
                 icon = icon.replaceAll("icon/", "");
-                photo = photo.replaceFirst("data/", "");
+                photo = photo.replaceFirst("../data/", "");
                 values.put("_id", _id);
                 values.put("Status", status);
                 values.put("Title", title);
@@ -144,8 +156,8 @@ public class ProviderDao {
                 values.put("Createtime", createtime);
                 values.put("Content", content);
                 values.put("Partynumber", partynumber);
-                values.put("Chattingtime", chattingtime);
-                values.put("Chatting", chatting);
+//                values.put("Chattingtime", chattingtime);
+//                values.put("Chatting", chatting);
                 values.put("Photo", photo);
 
                 context.getContentResolver().insert(CardtalkContract.Cards.CONTENT_URI, values);
@@ -188,8 +200,8 @@ public class ProviderDao {
         String createtime;
         String content;
         int partynumber;
-        String chattingtime;
-        String chatting;
+//        String chattingtime;
+//        String chatting;
         String photo;
 
 //        String sql = "SELECT * FROM CARDS WHERE _id = '" + _id + "';";
@@ -215,11 +227,12 @@ public class ProviderDao {
             createtime = cursor.getString(6);
             content = cursor.getString(7);
             partynumber = cursor.getInt(8);
-            chattingtime = cursor.getString(9);
-            chatting = cursor.getString(10);
-            photo = cursor.getString(11);
+//            chattingtime = cursor.getString(9);
+//            chatting = cursor.getString(10);
+            photo = cursor.getString(9);
 
-            article = new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo);
+            article = new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, photo);
+//            article = new CardDTO(_id, status, title, nickname, authorid, icon, createtime, content, partynumber, chattingtime, chatting, photo);
         }
         cursor.close();
 
@@ -231,10 +244,13 @@ public class ProviderDao {
         String _id;
         String articleid;
         String nickname;
-        int userid;
+        String userid;
         String icon;
         String content;
         String time;
+        String user;
+
+        FileDownloader fileDownloader = new FileDownloader(context);
 
         try {
             JSONArray jArr = new JSONArray(jsonData);
@@ -243,24 +259,58 @@ public class ProviderDao {
                 JSONObject jObj = jArr.getJSONObject(i);
                 _id = jObj.getString("_id");
                 articleid = jObj.getString("articleid");
-                nickname = jObj.getString("nickname");
-                userid = jObj.getInt("userid");
-                icon = jObj.getString("icon");
+
+                user = jObj.getString("user");
+                JSONObject userObj = new JSONObject(user);
+
+                nickname = userObj.getString("nickname");
+                userid = userObj.getString("userid");
+                icon = userObj.getString("icon");
+
+                Log.i("test", "user: " + nickname + ", " + userid + ", " + icon);
+
+//                nickname = jObj.getString("nickname");
+//                userid = jObj.getInt("userid");
+//                icon = jObj.getString("icon");
                 content = jObj.getString("content");
                 time = jObj.getString("time");
 
                 Log.i("test", "title: " + content);
 
-                String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content,time)"
-                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
+                if (i == jArr.length() - 1) {
+                    pref = context.getSharedPreferences(context.getResources().getString(R.string.pref_name), context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString(context.getResources().getString(R.string.pref_cardkey), _id);
+                    editor.commit();
 
-                Log.i("test", sql);
-
-                try {
-                    database.execSQL(sql);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.i("test", "updated cardkey: " + pref.getString(context.getResources().getString(R.string.pref_cardkey), ""));
                 }
+
+                ContentValues values = new ContentValues();
+                icon = icon.replaceAll("icon/", "");
+                values.put("_id", _id);
+                values.put("Articleid", articleid);
+                values.put("Nickname", nickname);
+                values.put("Userid", userid);
+                values.put("Icon", icon);
+                values.put("Content", content);
+                values.put("Time", time);
+
+                context.getContentResolver().insert(CardtalkContract.Chats.CONTENT_URI, values);
+
+                Log.i("test", "icon: " + icon);
+                fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
+//
+//                String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content, time)"
+//                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
+//
+//                Log.i("test", sql);
+//
+//                try {
+//                    database.execSQL(sql);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
         } catch (JSONException e) {
             Log.e("test", "JSON ERROR! - " + e);
@@ -446,6 +496,21 @@ public class ProviderDao {
 
         return roomList;
     }
+
+//    public String findArticleId(String jsonData) {
+//
+//        if (jsonData == null || jsonData.isEmpty()) return null;
+//
+//        String _id;
+//
+//        try {
+//            JSONObject jsonObject = new JSONObject(jsonData);
+//            _id = jsonObject.getString("_id");
+//            Log.i("test", "findArticleid: " + _id);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//    }
+
 //
 //    public String parsingDate(String inputDate) {
 //        try {

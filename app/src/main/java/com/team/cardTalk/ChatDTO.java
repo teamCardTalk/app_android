@@ -7,12 +7,12 @@ public class ChatDTO {
     private String id;
     private String articleid;
     private String nickname;
-    private int nicknameid;
+    private String nicknameid;
     private String icon;
     private String content;
     private String time;
 
-    public ChatDTO(String id, String articleid, String nickname, int nicknameid, String icon, String content, String time) {
+    public ChatDTO(String id, String articleid, String nickname, String nicknameid, String icon, String content, String time) {
         this.id = id;
         this.articleid = articleid;
         this.nickname = nickname;
@@ -26,7 +26,7 @@ public class ChatDTO {
         return id;
     }
 
-    public String getChatid() {
+    public String getArticleid() {
         return articleid;
     }
 
@@ -34,7 +34,7 @@ public class ChatDTO {
         return nickname;
     }
 
-    public int getNicknameid() {
+    public String getNicknameid() {
         return nicknameid;
     }
 

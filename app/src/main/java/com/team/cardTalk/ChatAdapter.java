@@ -56,7 +56,6 @@ public class ChatAdapter extends CursorAdapter{
         viewHolder.tvChatNickname = (TextView) row.findViewById(R.id.tvChatNickname);
         viewHolder.tvChatContent = (TextView) row.findViewById(R.id.tvChatContent);
         viewHolder.tvChatTime = (TextView) row.findViewById(R.id.tvChatTime);
-
         viewHolder.ivChatIcon = (ImageView) row.findViewById(R.id.ivChatIcon);
 
         row.setTag(viewHolder);
@@ -81,47 +80,4 @@ public class ChatAdapter extends CursorAdapter{
             viewHolder.ivChatIcon.setImageBitmap(bitmap);
         }
     }
-
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        View row = convertView;
-//        Drawable d = null;
-//
-//        if (row == null) {
-//            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-//            row = inflater.inflate(layoutResourceId, parent, false);
-//        }
-//
-//        TextView tvChatNickname = (TextView) row.findViewById(R.id.tvChatNickname);
-//        TextView tvChatContent = (TextView) row.findViewById(R.id.tvChatContent);
-//        TextView tvChatTime = (TextView) row.findViewById(R.id.tvChatTime);
-//
-//        tvChatNickname.setText(chatData.get(position).getNickname());
-//        tvChatContent.setText(chatData.get(position).getContent());
-//        tvChatTime.setText(chatData.get(position).getTime());
-//
-//        ImageView ivArticleIcon = (ImageView) row.findViewById(R.id.ivChatIcon);
-//
-//        String icon = chatData.get(position).getIcon();
-//        icon = icon.replaceAll("icon/", "");
-//        String iconPath = context.getFilesDir().getPath() + "/" + icon;
-//        File iconLoadPath = new File(iconPath);
-//
-//        if (iconLoadPath.exists()) {
-//            Bitmap bitmap = BitmapFactory.decodeFile(iconPath);
-//            ivArticleIcon.setImageBitmap(bitmap);
-//        }
-//
-//        return row;
-//    }
-
-//    public String parsingDate(String inputDate) {
-//        try {
-//            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);
-//            return new SimpleDateFormat("MM-dd hh:mm").format(date).toString();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return inputDate;
-//    }
 }

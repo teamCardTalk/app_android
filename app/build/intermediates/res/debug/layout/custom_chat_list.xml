@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginRight="2dp">
@@ -31,32 +31,36 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="chatting hear"
+                android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
                 android:id="@+id/tvChatContent"
                 android:textSize="12sp"
 
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/chat_balloon"
                 android:paddingLeft="10dp"
-                android:paddingRight="4dp" />
+                android:paddingRight="4dp"
+                android:layout_weight="1" />
 
             <!--android:focusable="false"-->
             <!--android:clickable="false"-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="8sp"
+                android:textSize="9sp"
                 android:text="date and time"
                 android:id="@+id/tvChatTime"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="2dp"
                 android:layout_marginBottom="2dp"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:layout_marginRight="6dp" />
 
         </LinearLayout>
     </LinearLayout>

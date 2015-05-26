@@ -20,8 +20,8 @@ public final class CardtalkContract {
         public static final String CREATETIME = "createtime";
         public static final String CONTENT = "content";
         public static final String PARTYNUMBER = "partynumber";
-        public static final String CHATTINGTIME = "chattingtime";
-        public static final String CHATTING = "chatting";
+//        public static final String CHATTINGTIME = "chattingtime";
+//        public static final String CHATTING = "chatting";
         public static final String PHOTO = "photo";
 
         public static final Uri CONTENT_URI = Uri.withAppendedPath(
@@ -29,7 +29,8 @@ public final class CardtalkContract {
         );
 
         public static final String[] PROJECTION_ALL = {
-                _ID, STATUS, TITLE, NICKNAME, AUTHORID, ICON, CREATETIME, CONTENT, PARTYNUMBER, CHATTINGTIME, CHATTING, PHOTO
+                _ID, STATUS, TITLE, NICKNAME, AUTHORID, ICON, CREATETIME, CONTENT, PARTYNUMBER, PHOTO
+//                _ID, STATUS, TITLE, NICKNAME, AUTHORID, ICON, CREATETIME, CONTENT, PARTYNUMBER, CHATTINGTIME, CHATTING, PHOTO
         };
 
         public static final String SORT_ORDER_DEFAULT = CREATETIME + " DESC";

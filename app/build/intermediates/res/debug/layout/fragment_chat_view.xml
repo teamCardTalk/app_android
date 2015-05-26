@@ -10,7 +10,7 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true" >
+        android:fitsSystemWindows="true">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -109,9 +109,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/custom_chat_listView"
                         android:scrollbars="none"
-                        android:divider="@null">
-
-                    </ListView>
+                        android:divider="@null"
+                        android:stackFromBottom="true"
+                        android:transcriptMode="alwaysScroll" />
 
                 </LinearLayout>
 

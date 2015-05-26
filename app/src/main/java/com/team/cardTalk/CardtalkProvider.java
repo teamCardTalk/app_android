@@ -53,13 +53,13 @@ public class CardtalkProvider extends ContentProvider{
                     + "                                         status int not null,"
                     + "                                         title text not null,"
                     + "                                         nickname text not null,"
-                    + "                                         authorid int not null,"
+                    + "                                         authorid string not null,"
                     + "                                         icon text not null,"
                     + "                                         createtime text not null,"
                     + "                                         content text not null,"
                     + "                                         partynumber integer,"
-                    + "                                         chattingtime text not null,"
-                    + "                                         chatting text,"
+//                    + "                                         chattingtime text not null,"
+//                    + "                                         chatting text,"
                     + "                                         photo text)";
             database.execSQL(sql);
         } catch (Exception e) {
@@ -167,6 +167,7 @@ public class CardtalkProvider extends ContentProvider{
                 cursor = database.query(TABLE_NAME1, CardtalkContract.Cards.PROJECTION_ALL, selection,
                         selectionArgs, null, null, sortOrder);
                 cursor.setNotificationUri(getContext().getContentResolver(), uri);
+                Log.i("test", "cursor query uri:" + uri);
 
                 return cursor;
             case CHAT_ID:
@@ -181,17 +182,12 @@ public class CardtalkProvider extends ContentProvider{
                 cursor = database.query(TABLE_NAME2, CardtalkContract.Chats.PROJECTION_ALL, selection,
                         selectionArgs, null, null, sortOrder);
                 cursor.setNotificationUri(getContext().getContentResolver(), uri);
+                Log.i("test", "cursor query uri:" + uri);
 
                 return cursor;
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
-//
-//        cursor = database.query(TABLE_NAME1, CardtalkContract.Cards.PROJECTION_ALL, selection,
-//                selectionArgs, null, null, sortOrder);
-//        cursor.setNotificationUri(getContext().getContentResolver(), uri);
-//
-//        return cursor;
     }
 
     @Override
@@ -201,18 +197,29 @@ public class CardtalkProvider extends ContentProvider{
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+        long id;
+        Uri itemUri;
+
         // URI 유효성 검사
-        if (URI_MATCHER.match(uri) != CARD_LIST) {
-            throw new IllegalArgumentException("[Insert]Insertion을 지원하지 않는 URI입니다: " + uri);
-        }
+        switch (URI_MATCHER.match(uri)) {
+            case CARD_LIST:
+                id = database.insert("Cards", null, values);
+                itemUri = ContentUris.withAppendedId(uri, id);
+                context.getContentResolver().notifyChange(uri, null);
+                Log.i("test", "insert uri:" + uri);
 
-        else {
-            long id = database.insert("Cards", null, values);
-            Uri itemUri = ContentUris.withAppendedId(uri, id);
+                return itemUri;
 
-            getContext().getContentResolver().notifyChange(itemUri, null);
+            case CHAT_ID:
+                id = database.insert("Chats", null, values);
+                itemUri = ContentUris.withAppendedId(uri, id);
+                context.getContentResolver().notifyChange(uri, null);
+                Log.i("test", "cursor query uri:" + uri);
 
-            return itemUri;
+                return itemUri;
+
+            default:
+                throw new IllegalArgumentException("[Insert]Insertion을 지원하지 않는 URI입니다: " + uri);
         }
     }
 

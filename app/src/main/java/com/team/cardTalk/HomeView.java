@@ -29,6 +29,7 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 	public final static int FRAGMENT_FRIENDS = 2;
 	public final static int FRAGMENT_SETTING = 3;
     private SharedPreferences pref;
+	private static final String EXCHANGE_NAME = "push";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,29 +61,35 @@ public class HomeView extends FragmentActivity implements OnClickListener {
         FragmentManagerStock.initiateFragmentManager(getSupportFragmentManager());
 
 		// service 실행
-        Context context = getApplicationContext();
+        final Context context = getApplicationContext();
         Intent intentSync = new Intent(context, SyncDataService.class);
         context.startService(intentSync);
 
         new Thread(new Runnable()  {
             public void run() {
                 ConnectionFactory factory = new ConnectionFactory();
-                try {
+				try {
                     factory.setHost("125.209.195.202");
                     Connection connection = factory.newConnection();
-                    Channel channel = connection.createChannel();
-                    String queueName = channel.queueDeclare().getQueue();
+					Channel channel = connection.createChannel();
+//					channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+
+                    String queueName = pref.getString("name", "");
+
+					Log.i("test", "queueName: " + queueName);
 
                     QueueingConsumer consumer = new QueueingConsumer(channel);
-                    channel.basicConsume(queueName, true, consumer);
+                    channel.basicConsume("user02", true, consumer);
 
                     while (true) {
                         QueueingConsumer.Delivery delivery= consumer.nextDelivery();
                         String message = new String(delivery.getBody());
                         String routingKey = delivery.getEnvelope().getRoutingKey();
 
-                        //TODO 실제 채팅 메시지로 변환
+                        //TODO 실제 채팅 메시지로 삽입 되는지 확인
                         Log.i("Test", "rabbitmq" + routingKey + message);
+						ProviderDao dao = new ProviderDao(context);
+						dao.insertJsonChatData(message);
                     }
 
                 } catch (IOException e) {

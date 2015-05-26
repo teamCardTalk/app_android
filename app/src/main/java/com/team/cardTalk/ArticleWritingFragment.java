@@ -20,6 +20,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
 import org.apache.http.Header;
 
 import java.io.IOException;
@@ -28,7 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class WritingArticleFragment extends Fragment implements View.OnClickListener {
+public class ArticleWritingFragment extends Fragment implements View.OnClickListener {
 
     private ImageButton bt_previous;
     private Button bt_complete;
@@ -124,8 +128,8 @@ public class WritingArticleFragment extends Fragment implements View.OnClickList
                         DATE,
                         tvArticleWriteContent.getText().toString(),
                         1,
-                        DATE,
-                        "temp",
+//                        DATE,
+//                        "temp",
                         fileName
                 );
 

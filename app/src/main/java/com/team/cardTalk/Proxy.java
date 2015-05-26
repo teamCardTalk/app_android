@@ -1,6 +1,8 @@
 package com.team.cardTalk;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.util.Log;
@@ -11,6 +13,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static android.support.v4.app.ActivityCompat.startActivity;
+
 /**
  * Created by Garam on 2015-05-10.
  */
@@ -20,6 +24,7 @@ public class Proxy {
     private String serverUrl;
     private SharedPreferences pref;
     private Context context;
+    private String cookie;
 
     public Proxy(Context context) {
         this.context = context;
@@ -27,6 +32,13 @@ public class Proxy {
         pref = context.getSharedPreferences(prefName, context.MODE_PRIVATE);
         serverUrl = pref.getString(
                 context.getResources().getString(R.string.server_url), "");
+
+        cookie = pref.getString(context.getResources().getString(R.string.cookie), "");
+
+        if (cookie == null) {
+            Intent intent = new Intent(context, com.team.cardTalk.HomeView.class);
+            context.startActivity(intent);
+        }
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
 
@@ -49,6 +61,7 @@ public class Proxy {
             conn.setRequestProperty("Accept-Charset", "UTF-8");
             conn.setRequestProperty("Cache-Control", "no-cache");
             conn.setRequestProperty("Accept-Charset", "application/json");
+            conn.setRequestProperty("Cookie", cookie);
             conn.setDoInput(true);
             conn.connect();
 
@@ -93,6 +106,7 @@ public class Proxy {
             conn.setRequestProperty("Accept-Charset", "UTF-8");
             conn.setRequestProperty("Cache-Control", "no-cache");
             conn.setRequestProperty("Accept-Charset", "application/json");
+            conn.setRequestProperty("Cookie", cookie);
             conn.setDoInput(true);
             conn.connect();
 
@@ -132,6 +146,7 @@ public class Proxy {
             conn.setRequestProperty("Accept-Charset", "UTF-8");
             conn.setRequestProperty("Cache-Control", "no-cache");
             conn.setRequestProperty("Accept-Charset", "application/json");
+            conn.setRequestProperty("Cookie", cookie);
             conn.setDoInput(true);
             conn.connect();
 

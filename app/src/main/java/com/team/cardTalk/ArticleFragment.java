@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.apache.http.Header;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ArticleFragment extends Fragment implements View.OnClickListener {
@@ -125,6 +127,17 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         btMember.setText(article.getPartynumber() + "");
     }
 
+    private void listChatView() {
+        article = dao.getArticleByArticleId(_id);
+        chatListView = (ListView) view.findViewById(R.id.custom_chat_listView);
+        articleView = inflater.inflate(R.layout.fragment_article_detail, chatListView, false);
+
+        cursor = dao.getChatListByArticleId(_id);
+
+        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), cursor, R.layout.custom_chat_list);
+        chatListView.setAdapter(chatAdapter);
+
+    }
 //    private static AsyncHttpClient client = new AsyncHttpClient();
 
     private void refreshData() {
@@ -168,6 +181,23 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
             case R.id.bt_member:
                 drawerLayout.openDrawer(lvDrawer);
+                break;
+
+            case R.id.btSend:
+                ChatWritingProxy proxy = new ChatWritingProxy(getActivity());
+                EditText editChat = (EditText) view.findViewById(R.id.editChat);;
+                try {
+                    proxy.joinRoom(_id);
+                    String content = editChat.getText().toString();
+                    proxy.uploadChat(_id, content);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                editChat.setText("", null);
+                refreshData();
+                listChatView();
+
                 break;
         }
     }

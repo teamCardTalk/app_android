@@ -1,6 +1,7 @@
 package com.team.cardTalk;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.util.Log;
@@ -27,10 +28,17 @@ public class FileDownloader {
     public SyncHttpClient client = new SyncHttpClient();
 //    public AsyncHttpClient client = new AsyncHttpClient();
 
+    public String cookie;
+
     public void downFile(final String fileUrl, String fileName) {
         final File filePath = new File(context.getFilesDir().getPath() + "/" + fileName);
 
         if (!filePath.exists()) {
+            String prefName = context.getResources().getString(R.string.pref_name);
+            SharedPreferences pref = context.getSharedPreferences(prefName, context.MODE_PRIVATE);
+            cookie = pref.getString(context.getResources().getString(R.string.cookie), "");
+            if (cookie != null) client.addHeader("Cookie", cookie);
+
             client.get(fileUrl, new FileAsyncHttpResponseHandler(context) {
 
                 @Override

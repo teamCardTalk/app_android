@@ -255,6 +255,12 @@
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="abc_max_action_buttons">2</integer>
+    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="Password">Password</string>
+    <string name="Username">Username</string>
+    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/res/values/values.xml -->
+    <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
@@ -279,6 +285,11 @@
     <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/values/values.xml -->
     <eat-comment/>
     <string name="clear">""</string>
+    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="cookie">cookie</string>
+    <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.2.0/res/values/values.xml -->
+    <eat-comment/>
     <string name="drawer_close">Navigation drawer Close</string>
     <string name="drawer_open">Open drawer navigation</string>
     <!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/values/strings.xml -->

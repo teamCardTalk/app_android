@@ -96,12 +96,12 @@ public class ArticleListFragment extends Fragment implements AdapterView.OnItemC
         Log.i("TEST", "_id : <" + _id + "> 선택됨");
     }
 
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "Write", Toast.LENGTH_SHORT).show();
-            Fragment newFragment = new WritingArticleFragment();
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(), "Write", Toast.LENGTH_SHORT).show();
+        Fragment newFragment = new ArticleWritingFragment();
 
-            // replace fragment
+        // replace fragment
         final FragmentTransaction transaction = FragmentManagerStock.getFragmentManager().beginTransaction();
 
         transaction.setCustomAnimations(R.anim.enter_from_top, R.anim.exit_to_bottom, R.anim.enter_from_bottom, R.anim.exit_to_top);

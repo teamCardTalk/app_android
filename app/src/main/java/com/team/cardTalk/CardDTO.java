@@ -13,12 +13,12 @@ public class CardDTO {
     private String createtime;
     private String content;
     private int partynumber;
-    private String chattingtime;
-    private String chatting;
+//    private String chattingtime;
+//    private String chatting;
     private String photo;
 
-
-    public CardDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
+    public CardDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String photo) {
+//    public CardDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
         this._id = _id;
         this.status = status;
         this.title = title;
@@ -28,8 +28,8 @@ public class CardDTO {
         this.createtime = createtime;
         this.content = content;
         this.partynumber = partynumber;
-        this.chattingtime = chattingtime;
-        this.chatting = chatting;
+//        this.chattingtime = chattingtime;
+//        this.chatting = chatting;
         this.photo = photo;
     }
 
@@ -67,13 +67,13 @@ public class CardDTO {
         return partynumber;
     }
 
-    public String getChattingtime() {
-        return chattingtime;
-    }
-
-    public String getChatting() {
-        return chatting;
-    }
+//    public String getChattingtime() {
+//        return chattingtime;
+//    }
+//
+//    public String getChatting() {
+//        return chatting;
+//    }
 
     public String getPhoto() {
         return photo;

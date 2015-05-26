@@ -89,7 +89,7 @@ ADDED from AndroidManifest.xml:27:9
 		ADDED from AndroidManifest.xml:29:13
 	android:writePermission
 		ADDED from AndroidManifest.xml:34:13
-activity#com.team.cardTalk.HomeView
+activity#com.team.cardTalk.LoginActivity
 ADDED from AndroidManifest.xml:35:9
 	android:label
 		ADDED from AndroidManifest.xml:37:13
@@ -105,3 +105,9 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:40:17
 	android:name
 		ADDED from AndroidManifest.xml:40:27
+activity#com.team.cardTalk.HomeView
+ADDED from AndroidManifest.xml:43:9
+	android:label
+		ADDED from AndroidManifest.xml:45:13
+	android:name
+		ADDED from AndroidManifest.xml:44:13

@@ -106,8 +106,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/custom_chat_listView"
                     android:scrollbars="none"
-                    android:divider="@null">
-
+                    android:divider="@null" >
                 </ListView>
 
             </LinearLayout>
