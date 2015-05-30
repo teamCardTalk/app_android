@@ -28,6 +28,7 @@ import org.apache.http.Header;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -60,7 +61,7 @@ public class ArticleWritingFragment extends Fragment implements View.OnClickList
         bt_photo.setOnClickListener(this);
 
         try {
-            InputStream is = getActivity().getAssets().open("icon1.png");
+            InputStream is = getActivity().getAssets().open("icon2.png");
             d = Drawable.createFromStream(is, null);
             ivArticleWriteIcon.setImageDrawable(d);
 
@@ -116,30 +117,48 @@ public class ArticleWritingFragment extends Fragment implements View.OnClickList
                 progressDialog = ProgressDialog.show(getActivity(), "", "업로드중입니다...");
 
                 String ID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
-                String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREA).format(new Date());
+//                String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.KOREA).format(new Date());
+
+                String title = tvArticleWriteTitle.getText().toString();
+                String content = tvArticleWriteContent.getText().toString();
 
                 CardDTO article = new CardDTO(
                         "temp",
                         1,
-                        tvArticleWriteTitle.getText().toString(),
+                        title,
                         "노란 조커",
-                        00000001,
+                        "temp",
                         "icon/icon2.png",
-                        DATE,
-                        tvArticleWriteContent.getText().toString(),
+                        "05-20 12:53",
+                        content,
                         1,
-//                        DATE,
-//                        "temp",
                         fileName
                 );
 
-                ArticleWritingProxy proxy = new ArticleWritingProxy(getActivity());
+                ArticleWritingProxy articleWritingProxy = new ArticleWritingProxy(getActivity());
 
-                proxy.uploadArticle(article, filePath,
+                articleWritingProxy.uploadArticle(article, filePath,
                         new AsyncHttpResponseHandler() {
                             @Override
                             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                                 Log.e("uploadArticle", "success: " + i);
+
+                                Proxy proxy = new Proxy(getActivity());
+                                String response = "";
+                                try {
+                                    response = new String(bytes, "UTF-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                Log.i("test", "uploadArticle bytes: " + response);
+
+                                // 글쓰면 방장은 바로 room join
+                                ProviderDao dao = new ProviderDao(getActivity());
+                                RoomDTO roomDTO = dao.getRoomDetail(response);
+                                String roomid = roomDTO.getArticleid();
+                                proxy.joinRoom(roomid);
+                                dao.insertDTORoomData(roomDTO);
+
                                 progressDialog.cancel();
                                 Toast.makeText(getActivity(), "onSuccess", Toast.LENGTH_SHORT).show();
                                 getFragmentManager().popBackStack();

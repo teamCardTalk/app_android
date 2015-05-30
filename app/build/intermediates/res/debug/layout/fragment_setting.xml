@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2185C5">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/relativeLayout"
+        android:background="#4262A0"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="환경 설정"
+            android:textColor="#ffffff"
+            android:layout_gravity="center" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:id="@+id/bt_logout"
+        android:text="로그아웃"
+        android:background="@drawable/balloon1"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_toLeftOf="@+id/bt_profile"
+        android:layout_toStartOf="@+id/bt_profile"
+        android:layout_marginTop="46dp" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:id="@+id/bt_profile"
+        android:text="프로필 변경"
+        android:background="@drawable/balloon3"
+        android:textColor="#ffffff"
+        android:layout_marginRight="69dp"
+        android:layout_marginEnd="69dp"
+        android:layout_above="@+id/bt_contract"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:id="@+id/bt_developer"
+        android:text="제작진"
+        android:background="@drawable/balloon2"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/bt_logout"
+        android:layout_alignLeft="@+id/bt_logout"
+        android:layout_alignStart="@+id/bt_logout" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:id="@+id/bt_contract"
+        android:text="이용약관"
+        android:background="@drawable/balloon4"
+        android:textColor="#ffffff"
+        android:layout_alignTop="@+id/bt_developer"
+        android:layout_alignLeft="@+id/bt_profile"
+        android:layout_alignStart="@+id/bt_profile" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:background="@drawable/bg04"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="380dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout><!-- From: file:/Users/eunjooim/Dropbox/debandroid-workspace/cardtalk_middle/app/src/main/res/layout/fragment_setting.xml -->

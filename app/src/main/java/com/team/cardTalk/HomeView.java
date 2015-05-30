@@ -1,10 +1,10 @@
 package com.team.cardTalk;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -61,7 +61,7 @@ public class HomeView extends FragmentActivity implements OnClickListener {
         FragmentManagerStock.initiateFragmentManager(getSupportFragmentManager());
 
 		// service 실행
-        final Context context = getApplicationContext();
+        Context context = getApplicationContext();
         Intent intentSync = new Intent(context, SyncDataService.class);
         context.startService(intentSync);
 
@@ -72,24 +72,24 @@ public class HomeView extends FragmentActivity implements OnClickListener {
                     factory.setHost("125.209.195.202");
                     Connection connection = factory.newConnection();
 					Channel channel = connection.createChannel();
-//					channel.exchangeDeclare(EXCHANGE_NAME, "direct");
 
                     String queueName = pref.getString("name", "");
 
-					Log.i("test", "queueName: " + queueName);
+					Log.i("test", "rabbitmq queueName: " + queueName);
 
                     QueueingConsumer consumer = new QueueingConsumer(channel);
-                    channel.basicConsume("user02", true, consumer);
+                    channel.basicConsume(queueName, true, consumer);
 
                     while (true) {
-                        QueueingConsumer.Delivery delivery= consumer.nextDelivery();
+						Log.i("test", "rabbitmq: waiting message");
+                        QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                         String message = new String(delivery.getBody());
                         String routingKey = delivery.getEnvelope().getRoutingKey();
+                        Log.i("Test", "rabbitmq: " + routingKey + message);
 
-                        //TODO 실제 채팅 메시지로 삽입 되는지 확인
-                        Log.i("Test", "rabbitmq" + routingKey + message);
-						ProviderDao dao = new ProviderDao(context);
-						dao.insertJsonChatData(message);
+						ProviderDao dao = new ProviderDao(getApplicationContext());
+						ContentValues contentValues = dao.insertJsonChatData(message);
+						dao.updateContentValueRoomData(contentValues);
                     }
 
                 } catch (IOException e) {
@@ -134,10 +134,10 @@ public class HomeView extends FragmentActivity implements OnClickListener {
 			newFragment = new RoomListFragment();
 			break;
 		case FRAGMENT_FRIENDS:
-			newFragment = new ThreeFragment();
+			newFragment = new FriendFragment();
 			break;
         case FRAGMENT_SETTING:
-			newFragment = new FourFragment();
+			newFragment = new SettingFragment();
 			break;
 
 		default:

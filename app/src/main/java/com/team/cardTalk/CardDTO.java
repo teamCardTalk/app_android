@@ -8,7 +8,7 @@ public class CardDTO {
     private int status;
     private String title;
     private String author;
-    private int authorid;
+    private String authorid;
     private String icon;
     private String createtime;
     private String content;
@@ -17,7 +17,7 @@ public class CardDTO {
 //    private String chatting;
     private String photo;
 
-    public CardDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String photo) {
+    public CardDTO(String _id, int status, String title, String author, String authorid, String icon, String createtime, String content, int partynumber, String photo) {
 //    public CardDTO(String _id, int status, String title, String author, int authorid, String icon, String createtime, String content, int partynumber, String chattingtime, String chatting, String photo) {
         this._id = _id;
         this.status = status;
@@ -47,7 +47,7 @@ public class CardDTO {
         return author;
     }
 
-    public int getAuthorid() {
+    public String getAuthorid() {
         return authorid;
     }
 

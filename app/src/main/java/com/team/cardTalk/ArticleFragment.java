@@ -1,15 +1,21 @@
 package com.team.cardTalk;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -66,13 +72,14 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
             _id = bundle.getString("_id");
         }
 
+        registerObserver("Chats");
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        refreshData();
         listView();
     }
 
@@ -145,7 +152,7 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         Proxy proxy = new Proxy(getActivity());
         ProviderDao dao = new ProviderDao(getActivity());
         String jsonData = proxy.getChatJSON(_id);
-        dao.insertJsonChatData(jsonData);
+        dao.insertJsonChatListData(jsonData);
 
 //        Log.i("test", "refreshChatData");
 //        String query = "http://125.209.195.202:3000/chat/" + _id;
@@ -172,20 +179,23 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        EditText editChat = (EditText) view.findViewById(R.id.editChat);
 
         switch(v.getId()){
 
             case R.id.bt_previous:
+                hideKeyboard(editChat);
                 getFragmentManager().popBackStack();
                 break;
 
             case R.id.bt_member:
+                hideKeyboard(editChat);
                 drawerLayout.openDrawer(lvDrawer);
                 break;
 
             case R.id.btSend:
                 ChatWritingProxy proxy = new ChatWritingProxy(getActivity());
-                EditText editChat = (EditText) view.findViewById(R.id.editChat);;
+                editChat = (EditText) view.findViewById(R.id.editChat);
                 try {
                     proxy.joinRoom(_id);
                     String content = editChat.getText().toString();
@@ -194,6 +204,7 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
                     e.printStackTrace();
                 }
 
+                hideKeyboard(editChat);
                 editChat.setText("", null);
                 refreshData();
                 listChatView();
@@ -202,6 +213,27 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void hideKeyboard(EditText target) {
+        InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        im.hideSoftInputFromWindow(target.getApplicationWindowToken(), 0);
+    }
+
+    public void registerObserver(String tableName) {
+        ContentResolver contentResolver = getActivity().getContentResolver();
+        ContentObserver myObserver = new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+
+                Log.i("test", "Observer onChange");
+                refreshData();
+                listChatView();
+            }
+        };
+
+        contentResolver.registerContentObserver(Uri.withAppendedPath(
+                CardtalkContract.CONTENT_URI, tableName), true, myObserver);
+    }
 //    public String parsingDate(String inputDate) {
 //        try {
 //            Date date = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss z").parse(inputDate);

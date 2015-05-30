@@ -4,28 +4,27 @@ package com.team.cardTalk;
  * Created by eunjooim on 15. 3. 31..
  */
 public class RoomDTO {
-    private String id;
-    private String articleid;
-    private int authorid;
-    private String icon;
-    private String title;
-    private String time;
-    private String chat;
+    public String articleid;
+    public String title;
+    public String nickname;
+    public String authorid;
+    public String icon;
+    public String time;
+    public String chat;
 
-    public RoomDTO(String articleid, int authorid, String icon, String title, String time, String chat) {
+    public RoomDTO(String articleid, String title, String nickname, String authorid, String icon, String time, String chat) {
         this.articleid = articleid;
+        this.title = title;
+        this.nickname = nickname;
         this.authorid = authorid;
         this.icon = icon;
-        this.title = title;
         this.time = time;
         this.chat = chat;
     }
 
-    public String getArticleid() {
-        return articleid;
-    }
+    public String getArticleid() {  return articleid; }
 
-    public int getAuthorid() {
+    public String getAuthorid() {
         return authorid;
     }
 
@@ -35,6 +34,10 @@ public class RoomDTO {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     public String getTime() {

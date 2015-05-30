@@ -2,8 +2,10 @@ package com.team.cardTalk;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,13 +50,19 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     private Proxy proxy;
     private ProviderDao dao;
     private Cursor cursor;
-    private ContentObserver myObserver;
     private EditText editChat;
     private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        String title;
+        String nickname;
+        String authorid;
+        String icon;
+        String time;
+        String chat;
 
         _id = null;
         this.inflater = inflater;
@@ -72,10 +81,13 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
         editChat = (EditText) view.findViewById(R.id.editChat);
 
+        proxy = new Proxy(getActivity());
         dao = new ProviderDao(getActivity());
-        CardDTO article = dao.getArticleByArticleId(_id);
 
-        tvChatTitle.setText(article.getTitle());
+        article = dao.getArticleByArticleId(_id);
+
+        title = article.getTitle();
+        tvChatTitle.setText(title);
         tvChatTitle.setTag(_id);
         tvChatTitle.setOnClickListener(this);
 
@@ -85,18 +97,19 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         drawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_layout);
         lvDrawer = (ListView) view.findViewById(R.id.lv_drawer);
 
-//        ContentResolver contentResolver = getActivity().getContentResolver();
-//        myObserver = new ContentObserver(new Handler()) {
-//            @Override
-//            public void onChange(boolean selfChange) {
-//                super.onChange(selfChange);
-//            }
-//        };
-//
-//        contentResolver.registerContentObserver(URI, true, myObserver);
+        // chat fragement 진입 시 room join
+        nickname = article.getAuthor();
+        authorid = article.getAuthorid();
+        icon = article.getIcon();
+        time = article.getCreatetime();
+        chat = "";
 
-        proxy = new Proxy(getActivity());
-        dao = new ProviderDao(getActivity());
+        RoomDTO roomDTO = new RoomDTO(_id, title, nickname, authorid, icon, time, chat);
+        String roomid = roomDTO.getArticleid();
+        proxy.joinRoom(roomid);
+        dao.insertDTORoomData(roomDTO);
+
+        registerObserver("Chats");
 
         return view;
     }
@@ -110,7 +123,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     private void listView() {
 
-        article = dao.getArticleByArticleId(_id);
         chatListView = (ListView) view.findViewById(R.id.custom_chat_listView);
         cursor = dao.getChatListByArticleId(_id);
 
@@ -124,17 +136,18 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     }
 
     private void refreshData() {
-        TimerTask mTask = new TimerTask() {
-            @Override
-            public void run() {
+//        TimerTask mTask = new TimerTask() {
+//            @Override
+//            public void run() {
 
                 String jsonData = proxy.getChatJSON(_id);
-                dao.insertJsonChatData(jsonData);
-            }
-        };
+                dao.insertJsonChatListData(jsonData);
+//            }
+//        };
 
-        Timer mTimer = new Timer();
-        mTimer.schedule(mTask, 1000 * 10, 1000 * 10);
+//        Timer mTimer = new Timer();
+//        mTimer.schedule(mTask, 1000 * 10, 1000 * 10);
+
 //        Proxy proxy = new Proxy(getActivity());
 //        ProviderDao dao = new ProviderDao(getActivity());
 //        String jsonData = proxy.getChatJSON(_id);
@@ -147,6 +160,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         switch(v.getId()){
 
             case R.id.bt_previous:
+                hideKeyboard(editChat);
                 getFragmentManager().popBackStack();
                 break;
 
@@ -155,6 +169,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.bt_member:
+                hideKeyboard(editChat);
                 drawerLayout.openDrawer(lvDrawer);
                 break;
 
@@ -170,6 +185,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 }
 
                 editChat.setText("", null);
+                hideKeyboard(editChat);
+
                 listView();
 
                 break;
@@ -214,7 +231,15 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void hideKeyboard(EditText target) {
+        InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        im.hideSoftInputFromWindow(target.getApplicationWindowToken(), 0);
+    }
+
     public void transactArticleFragment(String _id) {
+
+        hideKeyboard(editChat);
+
         Fragment newFragment = new ArticleFragment();
 
         // pass data(extras) to a fragment
@@ -232,5 +257,22 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         transaction.commit();
 
         Log.i("TEST", "_id : <" + _id + "> 채팅방 입장");
+    }
+
+    public void registerObserver(String tableName) {
+        ContentResolver contentResolver = getActivity().getContentResolver();
+        ContentObserver myObserver = new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+
+                Log.i("test", "Observer onChange");
+                refreshData();
+                listView();
+            }
+        };
+
+        contentResolver.registerContentObserver(Uri.withAppendedPath(
+                CardtalkContract.CONTENT_URI, tableName), true, myObserver);
     }
 }

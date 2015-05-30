@@ -45,7 +45,6 @@ public final class CardtalkContract {
         public static final String CONTENT = "content";
         public static final String TIME = "time";
 
-
         public static final Uri CONTENT_URI = Uri.withAppendedPath(
                 CardtalkContract.CONTENT_URI, Chats.class.getSimpleName()
         );
@@ -55,5 +54,41 @@ public final class CardtalkContract {
         };
 
         public static final String SORT_ORDER_DEFAULT = TIME + " ASC";
+    }
+
+    public static final class Rooms implements BaseColumns {
+        public static final String _ID= "_id";
+        public static final String TITLE = "title";
+        public static final String AUTHORID = "authorid";
+        public static final String NICKNAME = "nickname";
+        public static final String ICON = "icon";
+        public static final String TIME = "time";
+        public static final String CHAT = "chat";
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(
+                CardtalkContract.CONTENT_URI, Rooms.class.getSimpleName()
+        );
+
+        public static final String[] PROJECTION_ALL = {
+                _ID, TITLE, AUTHORID, NICKNAME, ICON, TIME, CHAT
+        };
+
+        public static final String SORT_ORDER_DEFAULT = TIME + " DESC";
+    }
+
+    public static final class Friends implements BaseColumns {
+        public static final String _ID= "_id";
+        public static final String NICKNAME = "nickname";
+        public static final String ICON = "icon";
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(
+                CardtalkContract.CONTENT_URI, Friends.class.getSimpleName()
+        );
+
+        public static final String[] PROJECTION_ALL = {
+                _ID,  NICKNAME, ICON
+        };
+
+        public static final String SORT_ORDER_DEFAULT = NICKNAME + " ASC";
     }
 }

@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2186C5">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/relativeLayout"
+        android:background="#4262A0"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="친구 추가"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:id="@+id/textView3" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView5"
+        android:background="@drawable/sparkle1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="추가할 친구의 아이디를 입력하세요."
+        android:id="@+id/textView4"
+        android:layout_marginTop="59dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4">
+
+        <EditText
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editFriendId"
+            android:layout_marginTop="150dp"
+            android:layout_alignTop="@+id/imageView5"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_marginLeft="16dp" />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:text="입력"
+            android:id="@+id/btEnter"
+            android:layout_alignTop="@+id/editFriendId"
+            android:layout_toRightOf="@+id/editFriendId"
+            android:layout_toEndOf="@+id/editFriendId"
+            android:textColor="#ffffff"
+            android:background="#3E4540"
+            android:layout_marginTop="1dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -195,7 +195,7 @@ public class ProviderDao {
         int status;
         String title;
         String nickname;
-        int authorid;
+        String authorid;
         String icon;
         String createtime;
         String content;
@@ -222,7 +222,7 @@ public class ProviderDao {
             status = cursor.getInt(1);
             title = cursor.getString(2);
             nickname = cursor.getString(3);
-            authorid = cursor.getInt(4);
+            authorid = cursor.getString(4);
             icon = cursor.getString(5);
             createtime = cursor.getString(6);
             content = cursor.getString(7);
@@ -239,8 +239,9 @@ public class ProviderDao {
         return article;
     }
 
-    public void insertJsonChatData(String jsonData) {
+    public ContentValues insertJsonChatListData(String jsonData) {
 
+        ContentValues values = new ContentValues();
         String _id;
         String articleid;
         String nickname;
@@ -257,6 +258,89 @@ public class ProviderDao {
 
             for (int i = 0; i < jArr.length(); ++i) {
                 JSONObject jObj = jArr.getJSONObject(i);
+
+            _id = jObj.getString("_id");
+            articleid = jObj.getString("articleid");
+
+            user = jObj.getString("user");
+            JSONObject userObj = new JSONObject(user);
+
+            nickname = userObj.getString("nickname");
+            userid = userObj.getString("userid");
+            icon = userObj.getString("icon");
+
+            Log.i("test", "user: " + nickname + ", " + userid + ", " + icon);
+
+//                nickname = jObj.getString("nickname");
+//                userid = jObj.getInt("userid");
+//                icon = jObj.getString("icon");
+            content = jObj.getString("content");
+            time = jObj.getString("time");
+
+            Log.i("test", "title: " + content);
+
+//                if (i == jArr.length() - 1) {
+//                    pref = context.getSharedPreferences(context.getResources().getString(R.string.pref_name), context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//                    editor.putString(context.getResources().getString(R.string.pref_chatkey), _id);
+//                    editor.commit();
+//
+//                    Log.i("test", "updated chatkey: " + pref.getString(context.getResources().getString(R.string.pref_chatkey), ""));
+//                }
+
+            icon = icon.replaceAll("icon/", "");
+            values.put("_id", _id);
+            values.put("Articleid", articleid);
+            values.put("Nickname", nickname);
+            values.put("Userid", userid);
+            values.put("Icon", icon);
+            values.put("Content", content);
+            values.put("Time", time);
+
+            context.getContentResolver().insert(CardtalkContract.Chats.CONTENT_URI, values);
+
+            Log.i("test", "icon: " + icon);
+            fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
+//
+//                String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content, time)"
+//                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
+//
+//                Log.i("test", sql);
+//
+//                try {
+//                    database.execSQL(sql);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+
+        return values;
+    }
+
+    public ContentValues insertJsonChatData(String jsonData) {
+
+        ContentValues values = new ContentValues();
+        String _id;
+        String articleid;
+        String nickname;
+        String userid;
+        String icon;
+        String content;
+        String time;
+        String user;
+
+        FileDownloader fileDownloader = new FileDownloader(context);
+
+        try {
+//            JSONArray jArr = new JSONArray(jsonData);
+//
+//            for (int i = 0; i < jArr.length(); ++i) {
+//                JSONObject jObj = jArr.getJSONObject(i);
+            JSONObject jObj = new JSONObject(jsonData);
                 _id = jObj.getString("_id");
                 articleid = jObj.getString("articleid");
 
@@ -276,17 +360,14 @@ public class ProviderDao {
                 time = jObj.getString("time");
 
                 Log.i("test", "title: " + content);
-
-                if (i == jArr.length() - 1) {
-                    pref = context.getSharedPreferences(context.getResources().getString(R.string.pref_name), context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString(context.getResources().getString(R.string.pref_cardkey), _id);
-                    editor.commit();
-
-                    Log.i("test", "updated cardkey: " + pref.getString(context.getResources().getString(R.string.pref_cardkey), ""));
-                }
-
-                ContentValues values = new ContentValues();
+//                if (i == jArr.length() - 1) {
+//                    pref = context.getSharedPreferences(context.getResources().getString(R.string.pref_name), context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//                    editor.putString(context.getResources().getString(R.string.pref_chatkey), _id);
+//                    editor.commit();
+//
+//                    Log.i("test", "updated chatkey: " + pref.getString(context.getResources().getString(R.string.pref_chatkey), ""));
+//                }
                 icon = icon.replaceAll("icon/", "");
                 values.put("_id", _id);
                 values.put("Articleid", articleid);
@@ -300,6 +381,8 @@ public class ProviderDao {
 
                 Log.i("test", "icon: " + icon);
                 fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
+
+                Log.i("test", "rabbitmq chatvalues: " + values.toString());
 //
 //                String sql = "INSERT INTO Chats(_id, articleid, nickname, userid, icon, content, time)"
 //                        + " VALUES('" + _id + "', '"+ articleid + "', '" + nickname + "', '" + userid + "', '" + icon + "', '" + content + "', '" + time + "');";
@@ -311,11 +394,13 @@ public class ProviderDao {
 //                } catch (Exception e) {
 //                    e.printStackTrace();
 //                }
-            }
+//            }
         } catch (JSONException e) {
             Log.e("test", "JSON ERROR! - " + e);
             e.printStackTrace();
         }
+
+        return values;
     }
 
     public Cursor getChatListByArticleId(String _id) {
@@ -381,91 +466,111 @@ public class ProviderDao {
 //        return chatList;
 //    }
 
-    public void insertJsonRoomTestData() {
+//    public void insertJsonRoomTestData() {
+//
+//        String articleid = "5534781e6c881dab0ffe6403";
+//        int authorid = 00000002;
+//        String icon = "icon4.png";
+//        String title = "붉은 왕의 고혹적인 침실";
+//        String time = "04-20 12:53";
+//        String chat = "형진이는 못하는게 뭐지?";
+//
+//        String sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
+//                + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+//
+//        Log.i("test", sql);
+//
+//        try {
+//            database.execSQL(sql);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        articleid = "553522479f9a77b90f8e7b18";
+//        authorid = 00000002;
+//        icon = "icon1.png";
+//        title = "붉은 왕의 허리케인";
+//        time = "04-21 01:14";
+//        chat = "채팅방 테스트";
+//
+//        sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
+//                + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+//
+//        Log.i("test", sql);
+//
+//        try {
+//            database.execSQL(sql);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        String articleid = "5534781e6c881dab0ffe6403";
-        int authorid = 00000002;
-        String icon = "icon4.png";
-        String title = "붉은 왕의 고혹적인 침실";
-        String time = "04-20 12:53";
-        String chat = "형진이는 못하는게 뭐지?";
+    public void insertDTORoomData(RoomDTO roomDTO) {
+        String _id = roomDTO.getArticleid();
+        String title = roomDTO.getTitle();
+        String nickname = roomDTO.getNickname();
+        String authorid = roomDTO.getAuthorid();
+        String icon = roomDTO.getIcon();
+        String time = roomDTO.getTime();
+        String chat = roomDTO.getChat();
 
-        String sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
-                + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+        FileDownloader fileDownloader = new FileDownloader(context);
 
-        Log.i("test", sql);
+        ContentValues values = new ContentValues();
+        icon = icon.replaceAll("icon/", "");
+        values.put("_id", _id);
+        values.put("Title", title);
+        values.put("Nickname", nickname);
+        values.put("Authorid", authorid);
+        values.put("Icon", icon);
+        values.put("Time", time);
+        values.put("Chat", chat);
 
-        try {
-            database.execSQL(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        context.getContentResolver().insert(CardtalkContract.Rooms.CONTENT_URI, values);
 
-        articleid = "553522479f9a77b90f8e7b18";
-        authorid = 00000002;
-        icon = "icon1.png";
-        title = "붉은 왕의 허리케인";
-        time = "04-21 01:14";
-        chat = "채팅방 테스트";
-
-        sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
-                + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
-
-        Log.i("test", sql);
-
-        try {
-            database.execSQL(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        Log.i("test", "icon: " + icon);
+        fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
     }
 
-    public void insertJsonRoomData(String jsonData) {
+    public void updateContentValueRoomData(ContentValues values) {
+        ContentValues roomValues = new ContentValues();
+        roomValues.put("Chat", values.getAsString("Content"));
+        roomValues.put("Time", values.getAsString("Time"));
 
-        String articleid;
-        int authorid;
-        String icon;
-        String title;
-        String time;
-        String chat;
+        context.getContentResolver().update(
+                CardtalkContract.Rooms.CONTENT_URI, roomValues, null, new String[] {values.getAsString("Articleid")}
+        );
+    }
+
+    public RoomDTO getRoomDetail(String jsonData) {
+        String _id = "";
+        String title = "";
+        String nickname = "";
+        String authorid = "";
+        String icon = "";
+        String time = "";
+        String chat = "";
+        String author;
 
         try {
-            JSONArray jArr = new JSONArray(jsonData);
+            JSONObject jObj = new JSONObject(jsonData);
+            _id = jObj.getString("_id");
+            title = jObj.getString("title");
+            author = jObj.getString("author");
 
-            for (int i = 0; i < jArr.length(); ++i) {
-                JSONObject jObj = jArr.getJSONObject(i);
-                articleid = jObj.getString("articleid");
-                authorid = jObj.getInt("authorid");
-                icon = jObj.getString("icon");
-                title = jObj.getString("title");
-                time = jObj.getString("time");
-                chat = jObj.getString("chat");
+            JSONObject authorObj = new JSONObject(author);
 
-                Log.i("test", "chat: " + chat);
+            nickname = authorObj.getString("nickname");
+            authorid = authorObj.getString("userid");
+            icon = authorObj.getString("icon");
 
-                String sql = "INSERT INTO Rooms(articleid, authorid, icon, title, time, chat)"
-                        + " VALUES('" + articleid + "', " + authorid + ", '" + icon + "', '" + title + "', '" + time + "', '" + chat + "');";
+            time = jObj.getString("createtime");
 
-                Log.i("test", "insert sql: " + sql);
-
-                try {
-                    database.execSQL(sql);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    sql = "UPDATE Rooms set time='" + time + "', chat = '" + chat + "' where articleid='" + articleid + "';";
-                    try {
-                        database.execSQL(sql);
-                        Log.i("test", "update sql: " + sql);
-                    } catch (Exception ec) {
-                        ec.printStackTrace();
-                    }
-                }
-            }
         } catch (JSONException e) {
-            Log.e("test", "JSON ERROR! - " + e);
             e.printStackTrace();
         }
+
+        return new RoomDTO(_id, title, nickname, authorid, icon, time, chat);
     }
 
     public ArrayList<RoomDTO> getRoomList() {
@@ -473,9 +578,10 @@ public class ProviderDao {
         ArrayList<RoomDTO> roomList = new ArrayList<>();
 
         String articleid;
-        int authorid;
-        String icon;
         String title;
+        String nickname;
+        String authorid;
+        String icon;
         String time;
         String chat;
 
@@ -484,19 +590,103 @@ public class ProviderDao {
 
         while (cursor.moveToNext()) {
             articleid = cursor.getString(0);
-            authorid = cursor.getInt(1);
-            icon = cursor.getString(2);
-            title = cursor.getString(3);
-            time = cursor.getString(4);
-            chat = cursor.getString(5);
+            title = cursor.getString(1);
+            nickname = cursor.getString(2);
+            authorid = cursor.getString(3);
+            icon = cursor.getString(4);
+            time = cursor.getString(5);
+            chat = cursor.getString(6);
 
-            roomList.add(new RoomDTO(articleid, authorid, icon, title, time, chat));
+            roomList.add(new RoomDTO(articleid, title, nickname, authorid, icon, time, chat));
         }
         cursor.close();
 
         return roomList;
     }
 
+    public ArrayList<String> splitJsonFriendListDataToArrayList(String jsonData) {
+
+        ArrayList<String> friendList = new ArrayList<>();
+
+        if (jsonData == null || jsonData.isEmpty()) return null;
+        JSONObject jObj;
+        JSONArray friendsArr, jArr;
+
+        try {
+            jArr = new JSONArray(jsonData);
+            Log.i("test", "jArr: " + jArr.toString());
+
+            for (int i = 0; i < jArr.length(); ++i) {
+                jObj = jArr.getJSONObject(i);
+                Log.i("test", "jObj: " + jObj.toString());
+
+                friendsArr = new JSONArray(jObj.getString("friends"));
+                Log.i("test", "friendsArr: " + friendsArr.toString());
+
+                for (int j = 0; i < friendsArr.length(); ++j) {
+                    String friendid = friendsArr.getString(j);
+                    Log.i("test", "friendid: " + friendid);
+
+                    friendList.add(friendid);
+                }
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+
+        return friendList;
+    }
+
+    public void insertJsonFriendData(String jsonData) {
+
+        if (jsonData == null || jsonData.isEmpty()) return;
+
+        String nickname;
+        String _id;
+        String icon;
+
+        FileDownloader fileDownloader = new FileDownloader(context);
+
+        try {
+            JSONArray jArr = new JSONArray(jsonData);
+
+            for (int i = 0; i < jArr.length(); ++i) {
+                JSONObject jObj = jArr.getJSONObject(i);
+
+                nickname = jObj.getString("nickname");
+                _id = jObj.getString("userid");
+                icon = jObj.getString("icon");
+
+                Log.i("test", "author: " + nickname + ", " + _id + ", " + icon);
+
+                ContentValues values = new ContentValues();
+                icon = icon.replaceAll("icon/", "");
+
+                values.put("Nickname", nickname);
+                values.put("_Id", _id);
+                values.put("Icon", icon);
+                context.getContentResolver().insert(CardtalkContract.Friends.CONTENT_URI, values);
+
+                Log.i("test", "icon: " + icon);
+                fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+    }
+
+    public Cursor getFriendList() {
+
+        Cursor cursor = context.getContentResolver().query(
+                CardtalkContract.Friends.CONTENT_URI,
+                CardtalkContract.Friends.PROJECTION_ALL, null, null,
+                CardtalkContract.Friends.SORT_ORDER_DEFAULT
+        );
+
+        return cursor;
+    }
 //    public String findArticleId(String jsonData) {
 //
 //        if (jsonData == null || jsonData.isEmpty()) return null;

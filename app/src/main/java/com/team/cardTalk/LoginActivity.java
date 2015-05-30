@@ -12,13 +12,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.loopj.android.http.PersistentCookieStore;
 
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -31,8 +32,9 @@ public class LoginActivity extends Activity {
     private EditText editId, editPassword;
     public static final String name = "nameKey";
     public static final String pass = "passwordKey";
-    public SharedPreferences sharedpreferences;
+    public SharedPreferences pref;
     public PersistentCookieStore cookieStore;
+    private SharedPreferences.Editor editor;
     Context context;
 
     @Override
@@ -50,29 +52,27 @@ public class LoginActivity extends Activity {
     }
     @Override
     protected void onResume() {
-        sharedpreferences = getSharedPreferences(context.getString(R.string.pref_name), Context.MODE_PRIVATE);
-        if (sharedpreferences.contains(context.getString(R.string.cookie))) {
-            editId.setText(sharedpreferences.getString("name", ""));
-            editPassword.setText(sharedpreferences.getString("pass", ""));
+        super.onResume();
 
-            Log.i("test", "cookie: " + sharedpreferences.getString("cookie", ""));
+        pref = getSharedPreferences(context.getString(R.string.pref_name), Context.MODE_PRIVATE);
+
+        if (pref.contains(name))
+            editId.setText(pref.getString("name", ""), TextView.BufferType.EDITABLE);
+
+        Log.i("test", "loginpref: " + pref.getString("name", ""));
+
+        if (pref.contains(context.getString(R.string.cookie))) {
+            Log.i("test", "cookie: " + pref.getString("cookie", ""));
             Intent i = new Intent(this, com.team.cardTalk.HomeView.class);
             startActivity(i);
-
         }
-        super.onResume();
     }
 
     // http://www.tutorialspoint.com/android/android_session_management.htm
     public void login(View view) throws Exception {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
         String id = editId.getText().toString();
         String password = editPassword.getText().toString();
-        editor.putString(name, id);
-        editor.putString(pass, password);
-        editor.commit();
 
-        Log.i("test", "login name: " + sharedpreferences.getString("name", ""));
         // http://loopj.com/android-async-http/
         // http://loopj.com/android-async-http/doc/com/loopj/android/http/PersistentCookieStore.html
 //        AsyncHttpClient client = new AsyncHttpClient();
@@ -115,7 +115,6 @@ public class LoginActivity extends Activity {
 //        });
 
         String prefName = context.getResources().getString(R.string.pref_name);
-        SharedPreferences pref = context.getSharedPreferences(prefName, context.MODE_PRIVATE);
 
         try {
             URL url = new URL("http://125.209.195.202:3000/" + "login");
@@ -146,9 +145,13 @@ public class LoginActivity extends Activity {
                     Log.i("test", "data: " + data);
                     Log.i("test", "cookie: " + cookie);
 
-                    editor = sharedpreferences.edit();
+                    editor = pref.edit();
                     editor.putString("cookie", cookie);
+                    editor.putString("name", id);
+                    editor.putString("pass", password);
                     editor.commit();
+
+                    Log.i("test", "login name: " + pref.getString("name", ""));
                     Log.i("test", "pref: " + pref.getString("cookie", ""));
                 }
                 i++;
