@@ -4,14 +4,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,7 +56,7 @@ public class FriendFragment extends Fragment implements OnClickListener{
 		ArrayList<String> friendList = dao.splitJsonFriendListDataToArrayList(jsonData);
 		for (int i = 0; i < friendList.size(); ++i) {
 			friendid = friendList.get(i);
-			friendDetail = proxy.getFriendDetailJSON(friendid);
+			friendDetail = proxy.getUserDetailJSON(friendid);
 			dao.insertJsonFriendData(friendDetail);
 		}
 

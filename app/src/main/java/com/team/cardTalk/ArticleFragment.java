@@ -42,6 +42,7 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     private DrawerLayout drawerLayout;
     private ListView lvDrawer;
     private ProviderDao dao;
+    private Proxy proxy;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +75,8 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
         registerObserver("Chats");
 
+        proxy = new Proxy(getActivity());
+        dao = new ProviderDao(getActivity());
         return view;
     }
 
@@ -81,6 +84,8 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         listView();
+        listChatView();
+        userListView();
     }
 
     private void listView() {
@@ -93,11 +98,6 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
 
         ChatAdapter chatAdapter = new ChatAdapter(getActivity(), cursor, R.layout.custom_chat_list);
         chatListView.setAdapter(chatAdapter);
-
-//        chatList = dao.getChatListByArticleId(_id);
-//        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.custom_chat_list, chatList);
-//        chatListView.setAdapter(chatAdapter);
-
 
         TextView tvArticleDetailTitle = (TextView) articleView.findViewById(R.id.tvArticleDetailTitle);
         TextView tvArticleDetailDate = (TextView) articleView.findViewById(R.id.tvArticleDetailDate);
@@ -145,12 +145,28 @@ public class ArticleFragment extends Fragment implements View.OnClickListener {
         chatListView.setAdapter(chatAdapter);
 
     }
-//    private static AsyncHttpClient client = new AsyncHttpClient();
+
+    private void userListView() {
+
+        Log.i("userListView", "started");
+        String userJsonData = proxy.getParticipantJSON(_id);
+        Log.i("userListView", "userJasonData: " + userJsonData);
+        ArrayList<String> userList = dao.splitJsonUserListDataToArrayList(userJsonData);
+        ArrayList<UserDTO> userDataList = new ArrayList<>();
+        String userData;
+
+        for (String s : userList) {
+            userData = proxy.getUserDetailJSON(s);
+            Log.i("userListView", "userData: " + userData);
+            userDataList.add(dao.convertJsonUserData(userData));
+        }
+
+        UserAdapter userAdapter = new UserAdapter(getActivity(), R.layout.custom_user_list, userDataList);
+        lvDrawer.setAdapter(userAdapter);
+    }
 
     private void refreshData() {
 
-        Proxy proxy = new Proxy(getActivity());
-        ProviderDao dao = new ProviderDao(getActivity());
         String jsonData = proxy.getChatJSON(_id);
         dao.insertJsonChatListData(jsonData);
 

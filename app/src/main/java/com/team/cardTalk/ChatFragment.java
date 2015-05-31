@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -119,6 +121,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         refreshData();
         listView();
+        userListView();
     }
 
     private void listView() {
@@ -135,13 +138,31 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         btSend.setOnClickListener(this);
     }
 
+    private void userListView() {
+
+        Log.i("userListView", "started");
+        String userJsonData = proxy.getParticipantJSON(_id);
+        Log.i("userListView", "userJasonData: " + userJsonData);
+        ArrayList<String> userList = dao.splitJsonUserListDataToArrayList(userJsonData);
+        ArrayList<UserDTO> userDataList = new ArrayList<>();
+        String userData;
+
+        for (String s : userList) {
+            userData = proxy.getUserDetailJSON(s);
+            Log.i("userListView", "userData: " + userData);
+            userDataList.add(dao.convertJsonUserData(userData));
+        }
+
+        UserAdapter userAdapter = new UserAdapter(getActivity(), R.layout.custom_user_list, userDataList);
+        lvDrawer.setAdapter(userAdapter);
+    }
+
     private void refreshData() {
 //        TimerTask mTask = new TimerTask() {
 //            @Override
 //            public void run() {
-
-                String jsonData = proxy.getChatJSON(_id);
-                dao.insertJsonChatListData(jsonData);
+        String jsonData = proxy.getChatJSON(_id);
+        dao.insertJsonChatListData(jsonData);
 //            }
 //        };
 

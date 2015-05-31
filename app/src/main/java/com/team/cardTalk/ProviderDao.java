@@ -687,6 +687,65 @@ public class ProviderDao {
 
         return cursor;
     }
+
+    public ArrayList<String> splitJsonUserListDataToArrayList(String jsonData) {
+
+        ArrayList<String> userList = new ArrayList<>();
+
+        if (jsonData == null || jsonData.isEmpty()) return null;
+        JSONObject jObj;
+        JSONArray friendsArr;
+
+        try {
+            jObj = new JSONObject(jsonData);
+            friendsArr = new JSONArray(jObj.getString("userList"));
+
+            for (int i = 0; i < friendsArr.length(); ++i) {
+                userList.add(friendsArr.getString(i));
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+
+    public UserDTO convertJsonUserData(String jsonData) {
+
+        if (jsonData == null || jsonData.isEmpty()) return null;
+
+        String nickname;
+        String _id;
+        String icon;
+        UserDTO userDTO = null;
+
+        FileDownloader fileDownloader = new FileDownloader(context);
+
+        try {
+            JSONArray jArr = new JSONArray(jsonData);
+
+            for (int i = 0; i < jArr.length(); ++i) {
+                JSONObject jObj = jArr.getJSONObject(i);
+
+                nickname = jObj.getString("nickname");
+                _id = jObj.getString("userid");
+                icon = jObj.getString("icon");
+
+                Log.i("test", "author: " + nickname + ", " + _id + ", " + icon);
+
+                userDTO = new UserDTO(_id, nickname, icon);
+
+                Log.i("test", "icon: " + icon);
+                fileDownloader.downFile("http://125.209.195.202:3000/image/icon=" + icon, icon);
+            }
+        } catch (JSONException e) {
+            Log.e("test", "JSON ERROR! - " + e);
+            e.printStackTrace();
+        }
+
+        return userDTO;
+    }
 //    public String findArticleId(String jsonData) {
 //
 //        if (jsonData == null || jsonData.isEmpty()) return null;

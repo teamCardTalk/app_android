@@ -252,7 +252,47 @@ public class Proxy {
         return null;
     }
 
-    public String getFriendDetailJSON(String userid) {
+    public String getParticipantJSON(String roomid) {
+
+        try {
+            URL url = new URL(serverUrl + "room/list/" + roomid);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setConnectTimeout(10 * 1000);
+            conn.setReadTimeout(10 * 1000);
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Accept-Charset", "UTF-8");
+            conn.setRequestProperty("Cache-Control", "no-cache");
+            conn.setRequestProperty("Accept-Charset", "application/json");
+            conn.setRequestProperty("Cookie", cookie);
+            conn.setDoInput(true);
+            conn.connect();
+
+            int status = conn.getResponseCode();
+            Log.i("test", "ProxyResponseCode:" + status);
+
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+                    return sb.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("test", "NETWORK ERROR:" + e);
+        }
+
+        return null;
+    }
+
+    public String getUserDetailJSON(String userid) {
 
         try {
             URL url = new URL(serverUrl + "friend/" + userid);
